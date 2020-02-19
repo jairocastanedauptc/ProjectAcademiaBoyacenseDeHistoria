@@ -408,7 +408,7 @@
                 .catch(error =>{
                     if(error.response.status == 422){
                         this.errors= error.response.data.errors;
-                        this.errorMostrarMsjEjemplar.push("El formato del año de publicación no es válido");
+                        this.errorMostrarMsjEjemplar.push("El formato del año de publicación No es válido");
                     }
                 });
                 //.catch(function(error => ){
