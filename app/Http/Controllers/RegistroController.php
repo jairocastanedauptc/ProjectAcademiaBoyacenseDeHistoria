@@ -74,6 +74,7 @@ class RegistroController extends Controller
         $persona->celular =$request->celular;
         $persona->save(); 
     }
+     
     
     public function activar(Request $request){
         if (!$request->ajax()) return redirect('/');

@@ -307,6 +307,7 @@
                 }).catch(function (error) {
                     console.log(error);
                 }); 
+                
             },            
             validarPersona(){
                 this.errorPersona=0;

@@ -18,6 +18,7 @@
             <registro></registro>
         </template>
 
+
         <template v-if="menu==6">
             <user></user>
         </template>

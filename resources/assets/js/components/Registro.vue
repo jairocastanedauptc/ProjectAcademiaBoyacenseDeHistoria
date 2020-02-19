@@ -304,6 +304,7 @@
             },
             actualizarRegistro(){
                 
+                
                if (this.validarRegistro()){
                     return;
                 }

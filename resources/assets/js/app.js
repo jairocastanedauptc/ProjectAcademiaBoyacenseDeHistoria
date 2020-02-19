@@ -15,6 +15,7 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+ 
 Vue.component('categoria', require('./components/Categoria.vue'));
 Vue.component('coleccion', require('./components/Coleccion.vue'));
 Vue.component('ejemplar', require('./components/Ejemplar.vue'));
