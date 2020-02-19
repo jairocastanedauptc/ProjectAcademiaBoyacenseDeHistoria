@@ -16,9 +16,12 @@ window.Vue = require('vue');
  */
 
 Vue.component('categoria', require('./components/Categoria.vue'));
-Vue.component('autor', require('./components/Autor.vue'));
 Vue.component('coleccion', require('./components/Coleccion.vue'));
-
+Vue.component('ejemplar', require('./components/Ejemplar.vue'));
+Vue.component('rol', require('./components/Rol.vue'));
+Vue.component('user', require('./components/User.vue'));
+Vue.component('dashboard', require('./components/Dashboard.vue'));
+Vue.component('registro', require('./components/Registro.vue'));
 const app = new Vue({
     el: '#app',
     data :{

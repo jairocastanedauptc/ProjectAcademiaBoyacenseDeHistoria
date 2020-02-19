@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateColeccionesTables extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('colecciones', function (Blueprint $table) {
@@ -18,14 +13,9 @@ class CreateColeccionesTables extends Migration
             $table->string('nombre',45);
             $table->string('descripcion',256);
             $table->boolean('condicion')->default(1);
+            $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('colecciones');

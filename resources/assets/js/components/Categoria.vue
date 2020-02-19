@@ -10,7 +10,7 @@
                 <!-- Ejemplo de tabla Listado -->
                 <div class="card">
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> Categorías
+                        <i class="fa fa-align-justify"></i> Categorias
                         <button type="button" @click="abrirModal('categoria','registrar')" class="btn btn-secondary">
                             <i class="icon-plus"></i>&nbsp;Nuevo
                         </button>
@@ -38,7 +38,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="categoria in arrayCategoria" :Key="categoria.id">
+                                <tr v-for="categoria   in arrayCategoria" :Key="categoria.id">
                                     <td>
                                         <button type="button" @click="abrirModal('categoria','actualizar',categoria)" class="btn btn-warning btn-sm" >
                                           <i class="icon-pencil"></i>
@@ -101,7 +101,7 @@
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
                                     <div class="col-md-9">
-                                        <input type="text"  class="form-control" v-model="nombre" placeholder="Nombre de categoría">
+                                        <input type="text"  class="form-control" v-model="nombre" placeholder="Nombre de colección">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -187,7 +187,7 @@
         },
         methods :{
             
-           listarCategoria (page,buscar,criterio){
+            listarCategoria (page,buscar,criterio){
                 let me=this;
                 var url= '/categoria?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
@@ -207,11 +207,15 @@
                 me.listarCategoria(page,buscar,criterio);
             },
             registrarCategoria(){
+                this.nombre= this.nombre.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
+                //texto.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
+                this.nombre = this.nombre.toUpperCase();
                 if(this.validarCategoria()){
                     return;
                 }
                 let me= this;
                 axios.post('/categoria/registrar',{
+                    
                     'nombre': this.nombre,
                     'descripcion':this.descripcion
                 }).then(function(response){
@@ -224,7 +228,7 @@
             },
             actualizarCategoria(){
                 
-               if (this.validarCategoria()){
+               if (this.validarCategoriaActualizar()){
                     return;
                 }
                 
@@ -243,7 +247,7 @@
             },
             desactivarCategoria(id){
                swal({
-                title: 'Esta seguro de desactivar esta categoría?',
+                title: 'Está seguro de desactivar esta categoría?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -282,7 +286,7 @@
             },
             activarCategoria(id){
                swal({
-                title: 'Esta seguro de activar esta categoría?',
+                title: 'Esta seguro de activar esta Categoría?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -319,14 +323,36 @@
                 }
                 }) 
             },
+            validarCategoriaActualizar(){
+                    this.errorCategoria=0;
+                    this.errorMostrarMsjCategoria=[];
+                               
+                        if(!this.nombre) this.errorMostrarMsjCategoria.push("El nombre no puede estar vacío");
+                        if(!this.descripcion) this.errorMostrarMsjCategoria.push("La descripción no puede estar vacía");  
+                        //alert("no validó"); 
+                        if(this.errorMostrarMsjCategoria.length) this.errorCategoria=1;
+                        return this.errorCategoria;
+               
+            },
             validarCategoria(){
-                this.errorCategoria=0;
-                this.errorMostrarMsjCategoria=[];
-
-                if(!this.nombre) this.errorMostrarMsjCategoria.push("El nombre no puede estar vacío");
-                if(!this.descripcion) this.errorMostrarMsjCategoria.push("La descripción no puede estar vacía");   
-                if(this.errorMostrarMsjCategoria.length) this.errorCategoria=1;
-                return this.errorCategoria;
+                    this.errorCategoria=0;
+                    this.errorMostrarMsjCategoria=[];
+                    this.arrayCategoria.forEach(element => {
+                    if(element.nombre == this.nombre){
+                        //this.errorCategoria=0;
+                        this.errorMostrarMsjCategoria.push("Esta categoria ya existe");
+                        if(this.errorMostrarMsjCategoria.length) this.errorCategoria=1;
+                        alert(element.nombre);
+                        return this.errorCategoria;
+                    }
+                        
+                });              
+                        if(!this.nombre) this.errorMostrarMsjCategoria.push("El nombre no puede estar vacío");
+                        if(!this.descripcion) this.errorMostrarMsjCategoria.push("La descripción no puede estar vacía");  
+                        //alert("no validó"); 
+                        if(this.errorMostrarMsjCategoria.length) this.errorCategoria=1;
+                        return this.errorCategoria;
+               
             },
             cerrarModal(){
                 this.modal=0;
@@ -343,18 +369,17 @@
                                 this.modal=1;
                                 this.nombre="";
                                 this.descripcion="";
-                                this.tituloModal="Registrar Categoria";
+                                this.tituloModal="Registrar Categoría";
                                 this.tipoAccion=1;
                                 break;
                             }
                             case "actualizar":
                             {
-                                //this.categoria_id= data['categoria_id'];
                                 this.categoria_id=data['id'];
                                 this.modal=1;
                                 this.nombre=data['nombre'];
                                 this.descripcion= data['descripcion'];
-                                this.tituloModal="Actualizar Categoria";
+                                this.tituloModal="Actualizar Categoría";
                                 this.tipoAccion=2;
                             }    
                         }

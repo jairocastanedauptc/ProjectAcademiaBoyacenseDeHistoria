@@ -12,7 +12,7 @@
  * Copyright 2011-2017 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-@media print {
+ @media print {
   *,
   *::before,
   *::after {
@@ -7737,7 +7737,7 @@ base-chart.chart {
   .brand-minimized .app-header.navbar .navbar-brand {
     width: 50px;
     background-color: #fff;
-    background-image: url("../img/escudo.png");
+    background-image: url("../img/logo.png");
     background-size: 24px;
     border-bottom: 1px solid #c2cfd6; } }
 

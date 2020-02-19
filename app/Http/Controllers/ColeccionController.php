@@ -15,10 +15,10 @@ class ColeccionController extends Controller
         $criterio = $request->criterio;
          
         if ($buscar==''){
-            $colecciones = Coleccion::orderBy('id', 'desc')->paginate(3);
+            $colecciones = Coleccion::orderBy('id', 'desc')->paginate(10);
         }
         else{
-            $colecciones = Coleccion::where($criterio, 'like', '%'. $buscar . '%')->orderBy('id', 'desc')->paginate(3);
+            $colecciones = Coleccion::where($criterio, 'like', '%'. $buscar . '%')->orderBy('id', 'desc')->paginate(10);
         }
         return [
             'pagination' => [
@@ -61,5 +61,11 @@ class ColeccionController extends Controller
         $coleccion = Coleccion::findOrFail($request->id);
         $coleccion->condicion = '0';
         $coleccion->save();
+    }
+    public function selectColeccion(Request $request){
+        if (!$request->ajax()) return redirect('/');
+        $colecciones = Coleccion::where('condicion','=','1')
+        ->select('id','nombre')->orderBy('nombre', 'asc')->get();
+        return ['colecciones' => $colecciones];
     }
 }

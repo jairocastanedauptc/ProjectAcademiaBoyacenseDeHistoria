@@ -7,8 +7,7 @@ use App\Categoria;
 use Illuminate\Support\Facades\DB;
 
 class CategoriaController extends Controller
-{
-   
+{ 
     public function index(Request $request)
     {
         if (!$request->ajax()) return redirect('/');
@@ -17,10 +16,10 @@ class CategoriaController extends Controller
         $criterio = $request->criterio;
          
         if ($buscar==''){
-            $categorias = Categoria::orderBy('id', 'desc')->paginate(3);
+            $categorias = Categoria::orderBy('id', 'desc')->paginate(10);
         }
         else{
-            $categorias = Categoria::where($criterio, 'like', '%'. $buscar . '%')->orderBy('id', 'desc')->paginate(3);
+            $categorias = Categoria::where($criterio, 'like', '%'. $buscar . '%')->orderBy('id', 'desc')->paginate(10);
         }
         return [
             'pagination' => [
@@ -34,8 +33,6 @@ class CategoriaController extends Controller
             'categorias' => $categorias
         ];
     }
- 
-
     public function store(Request $request)
     {
         if (!$request->ajax()) return redirect('/');
@@ -54,6 +51,7 @@ class CategoriaController extends Controller
         $categoria->condicion = '1';
         $categoria->save();
     }
+    
     public function activar(Request $request){
         if (!$request->ajax()) return redirect('/');
         $categoria = Categoria::findOrFail($request->id);
@@ -65,5 +63,11 @@ class CategoriaController extends Controller
         $categoria = Categoria::findOrFail($request->id);
         $categoria->condicion = '0';
         $categoria->save();
+    }
+    public function selectCategoria(Request $request){
+        if (!$request->ajax()) return redirect('/');
+        $categorias = Categoria::where('condicion','=','1')
+        ->select('id','nombre')->orderBy('nombre', 'asc')->get();
+        return ['categorias' => $categorias];
     }
 }

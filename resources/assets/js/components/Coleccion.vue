@@ -207,6 +207,9 @@
                 me.listarColeccion(page,buscar,criterio);
             },
             registrarColeccion(){
+                this.nombre= this.nombre.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
+                //texto.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
+                this.nombre = this.nombre.toUpperCase();
                 if(this.validarColeccion()){
                     return;
                 }
@@ -224,7 +227,7 @@
             },
             actualizarColeccion(){
                 
-               if (this.validarColeccion()){
+               if (this.validarColeccionActualizar()){
                     return;
                 }
                 
@@ -319,7 +322,7 @@
                 }
                 }) 
             },
-            validarColeccion(){
+            validarColeccionActualizar(){
                 this.errorColeccion=0;
                 this.errorMostrarMsjColeccion=[];
 
@@ -327,6 +330,26 @@
                 if(!this.descripcion) this.errorMostrarMsjColeccion.push("La descripción no puede estar vacía");   
                 if(this.errorMostrarMsjColeccion.length) this.errorColeccion=1;
                 return this.errorColeccion;
+            },
+            validarColeccion(){
+                this.errorColeccion=0;
+                this.errorMostrarMsjColeccion=[];
+
+                    this.arrayColeccion.forEach(element => {
+                    if(element.nombre == this.nombre){
+                        //this.errorCategoria=0;
+                        this.errorMostrarMsjColeccion.push("Esta Colección ya existe");
+                        if(this.errorMostrarMsjColeccion.length) this.errorColeccion=1;
+                        alert(element.nombre);
+                        return this.errorColeccion;
+                    }
+                        
+                });              
+                        if(!this.nombre) this.errorMostrarMsjColeccion.push("El nombre no puede estar vacío");
+                        if(!this.descripcion) this.errorMostrarMsjColeccion.push("La descripción no puede estar vacía");  
+                        //alert("no validó"); 
+                        if(this.errorMostrarMsjColeccion.length) this.errorColeccion=1;
+                        return this.errorColeccion;
             },
             cerrarModal(){
                 this.modal=0;
@@ -343,7 +366,7 @@
                                 this.modal=1;
                                 this.nombre="";
                                 this.descripcion="";
-                                this.tituloModal="Registrar Coleccion";
+                                this.tituloModal="Registrar Colección";
                                 this.tipoAccion=1;
                                 break;
                             }
@@ -353,7 +376,7 @@
                                 this.modal=1;
                                 this.nombre=data['nombre'];
                                 this.descripcion= data['descripcion'];
-                                this.tituloModal="Actualizar Coleccion";
+                                this.tituloModal="Actualizar Colección";
                                 this.tipoAccion=2;
                             }    
                         }

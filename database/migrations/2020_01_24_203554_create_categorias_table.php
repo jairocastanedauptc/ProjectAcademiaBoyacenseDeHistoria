@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateCategoriasTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('categorias', function (Blueprint $table) {
@@ -18,14 +13,9 @@ class CreateCategoriasTable extends Migration
             $table->string('nombre',45);
             $table->string('descripcion',256);
             $table->boolean('condicion')->default(1);
+            $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('categorias');
