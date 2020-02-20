@@ -334,6 +334,7 @@
                         return this.errorCategoria;
                
             },
+            
             validarCategoria(){
                     this.errorCategoria=0;
                     this.errorMostrarMsjCategoria=[];

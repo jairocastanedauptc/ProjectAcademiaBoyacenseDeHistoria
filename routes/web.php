@@ -59,6 +59,7 @@ Route::get('/dashboard','DashboardController');
 Route::get('/user/selectPersona', 'UserController@selectPersona');
 
 
+
 Route::get('/registro','RegistroController@index');
 Route::post('/registro/registrar','RegistroController@store');
 Route::put('/registro/activar','RegistroController@activar');
