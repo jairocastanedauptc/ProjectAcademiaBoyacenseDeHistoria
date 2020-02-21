@@ -234,6 +234,9 @@
                                         <span v-if="errors.fecha_publicacion">{{errors.fecha_publicacion}}</span>
                                     </div>
                                 </div>
+
+
+                                
                                 <div class="text-center text-error">
                                         <div v-for="error in errorMostrarMsjEjemplar" :key="error" v-text="error"></div>
                                 </div>

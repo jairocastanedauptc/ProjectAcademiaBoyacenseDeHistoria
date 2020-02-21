@@ -56,6 +56,7 @@ Route::put('/user/activar','UserController@activar');
 Route::put('/user/desactivar','UserController@desactivar');
 Route::put('/user/actualizar','UserController@update');
 Route::get('/dashboard','DashboardController');
+
 Route::get('/user/selectPersona', 'UserController@selectPersona');
 
 

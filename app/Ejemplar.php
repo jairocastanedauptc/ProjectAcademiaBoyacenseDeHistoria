@@ -20,6 +20,7 @@ class Ejemplar extends Model
         'idcategoria',
         'idcoleccion'
     ];
+    
     public function categoria(){
         return $this->belongsTo('App\Categoria');
     }
