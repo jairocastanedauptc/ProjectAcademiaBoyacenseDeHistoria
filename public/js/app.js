@@ -39208,6 +39208,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -39275,6 +39278,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
     },
     methods: (_methods = {
+        cargarPdf: function cargarPdf() {
+            window.open('http://localhost:8000/registro/listarPdf', '_blank');
+        },
         listarRegistro: function listarRegistro(page, buscar, criterio) {
             var me = this;
             var url = '/registro?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
@@ -39524,6 +39530,23 @@ var render = function() {
             [
               _c("i", { staticClass: "icon-plus" }),
               _vm._v(" Nuevo\n                ")
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-info",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  _vm.cargarPdf()
+                }
+              }
+            },
+            [
+              _c("i", { staticClass: "icon-doc" }),
+              _vm._v(" Reporte\n                ")
             ]
           )
         ]),

@@ -66,3 +66,4 @@ Route::post('/registro/registrar','RegistroController@store');
 Route::put('/registro/activar','RegistroController@activar');
 Route::put('/registro/desactivar','RegistroController@desactivar');
 Route::put('/registro/actualizar','RegistroController@update');
+Route::get('/registro/listarPdf','RegistroController@listarPdf')->name('registros_pdf');

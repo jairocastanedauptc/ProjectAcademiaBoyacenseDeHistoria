@@ -14,6 +14,9 @@
                         <button type="button" @click="abrirModal('registro','registrar')" class="btn btn-secondary">
                             <i class="icon-plus"></i>&nbsp;Nuevo
                         </button>
+                        <button type="button" @click="cargarPdf()" class="btn btn-info">
+                            <i class="icon-doc"></i>&nbsp;Reporte
+                        </button>
                     </div>
                     <div class="card-body">
                         <div class="form-group row">
@@ -230,6 +233,9 @@
             }
         },
         methods :{
+            cargarPdf(){
+                window.open('http://localhost:8000/registro/listarPdf','_blank');
+            },
             listarRegistro (page,buscar,criterio){
                let me=this;
                 var url='/registro?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;

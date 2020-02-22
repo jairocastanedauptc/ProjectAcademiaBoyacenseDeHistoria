@@ -9,6 +9,16 @@ use Illuminate\Support\Facades\DB;
 
 class RegistroController extends Controller
 {
+    public function listarPdf(){
+        $registros = Registro::join('ejemplares','registros.idejemplar','=','ejemplares.id')
+        ->join('personas','registros.idpersona','=','personas.id')
+        ->select('registros.tema','personas.nombres as persona','ejemplares.titulo as titulo','personas.celular','registros.updated_at as fecha')
+        ->orderBy('registros.id', 'desc')->get();
+
+        $cont=Registro::count();
+        $pdf =\PDF::loadView('pdf.registrospdf',['registros'=>$registros,'cont'=>$cont]);
+        return $pdf->download('registros.pdf');
+    }
     public function index(Request $request)
     {
         if (!$request->ajax()) return redirect('/');

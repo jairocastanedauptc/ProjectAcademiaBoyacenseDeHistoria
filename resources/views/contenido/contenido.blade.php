@@ -28,9 +28,9 @@
             
         </template>
 
-        <template v-if="menu==8">
+       <!-- <template v-if="menu==8">
         <h1>Contenido del menú 8</h1>
-        </template>
+        </template>-->
 
         <template v-if="menu==9">
             <h1>Contenido del menú 9</h1>
