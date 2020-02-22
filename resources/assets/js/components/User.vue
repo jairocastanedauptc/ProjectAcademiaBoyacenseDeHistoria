@@ -292,6 +292,7 @@
                 }        
                 let me = this;
 
+
                 axios.put('/user/actualizar',{
                     'nombres': this.nombres,
                     'apellidos' : this.apellidos,

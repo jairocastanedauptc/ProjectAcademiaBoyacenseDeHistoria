@@ -35410,6 +35410,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -35563,7 +35567,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             }).catch(function (error) {
                 if (error.response.status == 422) {
                     _this.errors = error.response.data.errors;
-                    _this.errorMostrarMsjEjemplar.push("El formato del año de publicación no es válido");
+                    _this.errorMostrarMsjEjemplar.push("El formato del año de publicación No es válido");
                 }
             });
             //.catch(function(error => ){

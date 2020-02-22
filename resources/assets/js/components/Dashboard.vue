@@ -59,6 +59,7 @@
                 ejemplares:[],
                 varTotalEjemplar:[],
                 varMesEjemplar:[], 
+           
                 
                 //varVenta:null,
                 //charVenta:null,

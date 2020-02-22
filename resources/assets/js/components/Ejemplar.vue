@@ -236,6 +236,7 @@
                                 </div>
 
 
+
                                 
                                 <div class="text-center text-error">
                                         <div v-for="error in errorMostrarMsjEjemplar" :key="error" v-text="error"></div>

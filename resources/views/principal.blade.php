@@ -79,6 +79,9 @@
         <!-- /Fin del contenido principal -->
     </div>   
     </div>
+    <!--<footer class="fixed-bottom bg-light text-muted">
+        <div class="container text-center"> <p>Academia Boyacense de Historia. Tunja. Boyacá. Colombia</a> &copy; 2020</p> </div>
+    </footer>-->
     <footer class="app-footer">
         <span> Academia Boyacense de Historia. Tunja. Boyacá. Colombia</a> &copy; 2020</span>
         <span class="ml-auto">Desarrollado por Ingeniería de Sistemas y Computación U.P.T.C. SOGAMOSO</a></span>

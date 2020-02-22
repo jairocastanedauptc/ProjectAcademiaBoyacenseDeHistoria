@@ -7,7 +7,7 @@
                     <li class="nav-title">
                         Mantenimiento
                     </li>
-                    <li class="nav-item nav-dropdown">
+                    <li class="nav-item nav-dropdown" style="color: #056724">
                         <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-bag"></i>Inventario</a>
                         <ul class="nav-dropdown-items">
                             <li @click="menu=1" class="nav-item">
