@@ -34,10 +34,16 @@ class EjemplarController extends Controller
             ->select('categorias.nombre as nombre_categoria','colecciones.nombre as nombre_coleccion','ejemplares.id','ejemplares.titulo',
             'ejemplares.descripcion','ejemplares.idcategoria','ejemplares.idcoleccion','ejemplares.editorial','ejemplares.cantidad','ejemplares.imagen',
             'ejemplares.elaborado','ejemplares.condicion','ejemplares.autor','ejemplares.fecha_publicacion')
-            ->orderBy('ejemplares.id', 'desc')->paginate(5);
+            ->orderBy('ejemplares.titulo', 'asc')->paginate(5);
         }
         else{
-            $ejemplares = Ejemplar::where($criterio, 'like', '%'. $buscar . '%')->orderBy('id', 'desc')->paginate(5);
+            $ejemplares = Ejemplar::join('categorias','ejemplares.idcategoria','=','categorias.id')
+            ->join('colecciones','ejemplares.idcoleccion','=','colecciones.id')
+            ->select('categorias.nombre as nombre_categoria','colecciones.nombre as nombre_coleccion','ejemplares.id','ejemplares.titulo',
+            'ejemplares.descripcion','ejemplares.idcategoria','ejemplares.idcoleccion','ejemplares.editorial','ejemplares.cantidad','ejemplares.imagen',
+            'ejemplares.elaborado','ejemplares.condicion','ejemplares.autor','ejemplares.fecha_publicacion')
+            ->where('ejemplares.'.$criterio, 'like', '%'. $buscar . '%')
+            ->orderBy('ejemplares.titulo', 'asc')->paginate(5);
         }
         return [
             'pagination' => [
