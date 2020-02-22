@@ -13,7 +13,7 @@ class CreateUsersTable extends Migration
             $table->foreign('id')->references('id')->on('personas')->onDelete('cascade');
              
             $table->string('usuario')->unique();
-            $table->string('password');
+            $table->string('password',300);
             $table->boolean('condicion')->default(1);
  
             $table->integer('idrol')->unsigned();
@@ -21,6 +21,13 @@ class CreateUsersTable extends Migration
  
             $table->rememberToken();
         });
+        DB::table('users')->insert(array(
+        'id'=>1,
+        'usuario'=>'admin',
+        'password'=>encrypt('admin'),
+        'condicion'=>1,
+        'idrol'=>1
+    ));
     }
     public function down()
     {
