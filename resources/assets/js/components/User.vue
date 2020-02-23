@@ -148,7 +148,8 @@
                                     </div>
                                 </div>
                                 <div class="text-center text-error">
-                                        <div>El usuario se agregará cuando el formato de todos lo campos sea correcto</div>
+                                        
+                                        <div v-text="alertAgregar"></div>
                                     </div>
 
                               
@@ -224,6 +225,7 @@
                 errors:[],
                 errorAux:[],
                 tituloModal : '',
+                alertAgregar:'',
                 tipoAccion : 0,
                 errorPersona : 0,
                 errorMostrarMsjPersona : [],
@@ -356,9 +358,16 @@
                 }).then(function (response) {
                     me.cerrarModal();
                     me.listarPersona(1,'','nombres');
-                })
-                 .catch(function(error){
-                    console.log(error.response);
+                }).catch(error =>{
+                    if(error.response.status == 422){    
+                        //this.errors= error.response.data.errors;
+                        //this.errorAux.push("Asegurese de que los campos estén en el formato adecuado");
+                        //this.errorMostrarMsjPersona.push("El nombre debe ser letras en mayuscula,sin tildes ni caracteres especiales");
+                        
+                    }
+                    if(error.response.status ==500){
+                        console.log(error.response);
+                    }
                 });
                 /*.catch(error =>{
                     if(error.response.status == 422){    
@@ -403,6 +412,7 @@
                             {
                                 this.modal = 1;
                                 this.tituloModal = 'Registrar Usuario';
+                                this.alertAgregar='El usuario se agregará cuando el formato de todos lo campos sea correcto';
                                 this.nombres= '';
                                 this.apellidos='';
                                 this.celular='';
@@ -418,6 +428,7 @@
                                 //console.log(data);
                                 this.modal=1;
                                 this.tituloModal='Actualizar Usuario';
+                                this.alertAgregar='El usuario se actualizará cuando el formato de todos lo campos sea correcto,además debe cambiar el nombre del usuario'
                                 this.tipoAccion=2;
                                 this.persona_id=data['id'];
                                 this.nombres = data['nombres'];

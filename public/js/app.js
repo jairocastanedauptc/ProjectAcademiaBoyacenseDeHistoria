@@ -35454,6 +35454,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -35474,6 +35478,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             arrayEjemplar: [],
             modal: 0,
             tituloModal: "",
+            alertError: "",
             tipoAccion: 0,
             errorEjemplar: 0,
             errorMostrarMsjEjemplar: [],
@@ -35580,9 +35585,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         registrarEjemplar: function registrarEjemplar() {
             var _this = this;
 
-            this.titulo = this.titulo.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+            // this.titulo= this.titulo.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
             //texto.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
-            this.titulo = this.titulo.toUpperCase();
+            //this.titulo = this.titulo.toUpperCase();
             //texto.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
 
             if (this.validarEjemplar()) {
@@ -35608,6 +35613,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 if (error.response.status == 422) {
                     _this.errors = error.response.data.errors;
                     _this.errorMostrarMsjEjemplar.push("El formato del año de publicación No es válido");
+                    //console.log(error.response);
+                }
+                if (error.response.status == 500) {
+
+                    console.log(error.response);
                 }
             });
             //.catch(function(error => ){
@@ -35709,6 +35719,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 if (error.response.status == 422) {
                     _this3.errors = error.response.data.errors;
                     _this3.errorMostrarMsjEjemplar.push("El formato del año de publicación no es válido");
+                }
+                if (error.response.status == 500) {
+                    console.log(error.response);
                 }
             });
         },
@@ -35817,6 +35830,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                                 this.titulo = "";
                                 this.descripcion = "";
                                 this.tituloModal = "Registrar Ejemplar";
+                                this.alertError = "El ejemplar se registrará cuando el formato de todos los campos sea el correcto";
                                 this.idcategoria = 0;
                                 this.nombre_categoria = "";
                                 this.idcoleccion = 0;
@@ -35835,6 +35849,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                                 this.modal = 1;
                                 this.tipoAccion = 2;
                                 this.tituloModal = "Actualizar Ejemplar";
+                                this.alertError = "El ejemplar se actualizará cuando el formato de todos los campos sea el correcto";
 
                                 this.ejemplar_id = data["id"];
                                 this.titulo = data["titulo"];
@@ -36579,14 +36594,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group row" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "col-md-3 form-control-label",
-                          attrs: { for: "email-input" }
-                        },
-                        [_vm._v("Año de publicación")]
-                      ),
+                      _vm._m(2),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
                         _c("input", {
@@ -36738,6 +36746,12 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
+                    _c("div", { staticClass: "text-center text-error" }, [
+                      _c("div", {
+                        domProps: { textContent: _vm._s(_vm.alertError) }
+                      })
+                    ]),
+                    _vm._v(" "),
                     _c("div", { staticClass: "form-group row" }),
                     _vm._v(" "),
                     _c(
@@ -36880,6 +36894,19 @@ var staticRenderFns = [
         _c("th", [_vm._v("Condición")])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "col-md-3 form-control-label",
+        attrs: { for: "email-input" }
+      },
+      [_c("strong", [_vm._v("Año de publicación")]), _vm._v("(>=1900)")]
+    )
   }
 ]
 render._withStripped = true
@@ -37709,6 +37736,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -37727,6 +37755,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             errors: [],
             errorAux: [],
             tituloModal: '',
+            alertAgregar: '',
             tipoAccion: 0,
             errorPersona: 0,
             errorMostrarMsjPersona: [],
@@ -37857,7 +37886,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 me.cerrarModal();
                 me.listarPersona(1, '', 'nombres');
             }).catch(function (error) {
-                console.log(error.response);
+                if (error.response.status == 422) {
+                    //this.errors= error.response.data.errors;
+                    //this.errorAux.push("Asegurese de que los campos estén en el formato adecuado");
+                    //this.errorMostrarMsjPersona.push("El nombre debe ser letras en mayuscula,sin tildes ni caracteres especiales");
+
+                }
+                if (error.response.status == 500) {
+                    console.log(error.response);
+                }
             });
             /*.catch(error =>{
                 if(error.response.status == 422){    
@@ -37903,6 +37940,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                 {
                                     this.modal = 1;
                                     this.tituloModal = 'Registrar Usuario';
+                                    this.alertAgregar = 'El usuario se agregará cuando el formato de todos lo campos sea correcto';
                                     this.nombres = '';
                                     this.apellidos = '';
                                     this.celular = '';
@@ -37918,6 +37956,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     //console.log(data);
                                     this.modal = 1;
                                     this.tituloModal = 'Actualizar Usuario';
+                                    this.alertAgregar = 'El usuario se actualizará cuando el formato de todos lo campos sea correcto,además debe cambiar el nombre del usuario';
                                     this.tipoAccion = 2;
                                     this.persona_id = data['id'];
                                     this.nombres = data['nombres'];
@@ -38373,7 +38412,7 @@ var render = function() {
                           staticClass: "col-md-3 form-control-label",
                           attrs: { for: "text-input" }
                         },
-                        [_vm._v("Nombre")]
+                        [_vm._v("Nombre(s)")]
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
@@ -38411,7 +38450,7 @@ var render = function() {
                           staticClass: "col-md-3 form-control-label",
                           attrs: { for: "text-input" }
                         },
-                        [_vm._v("Apellidos")]
+                        [_vm._v("Apellido(s)")]
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
@@ -38634,7 +38673,11 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _vm._m(4),
+                    _c("div", { staticClass: "text-center text-error" }, [
+                      _c("div", {
+                        domProps: { textContent: _vm._s(_vm.alertAgregar) }
+                      })
+                    ]),
                     _vm._v(" "),
                     _c(
                       "div",
@@ -38824,18 +38867,6 @@ var staticRenderFns = [
       },
       [_c("strong", [_vm._v("Password ")]), _vm._v("(minimo 8 caracteres)")]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "text-center text-error" }, [
-      _c("div", [
-        _vm._v(
-          "El usuario se agregará cuando el formato de todos lo campos sea correcto"
-        )
-      ])
-    ])
   }
 ]
 render._withStripped = true
@@ -39367,6 +39398,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -39385,6 +39421,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             tituloModal: "",
             tipoAccion: 0,
             errorRegistro: 0,
+            alertAgregar: "",
             errorMostrarMsjRegistro: [],
 
             pagination: {
@@ -39617,6 +39654,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                                 this.modal = 1;
                                 this.tema = "";
                                 this.tituloModal = "Registrar Consulta";
+                                this.alertAgregar = "El registro se guardará cuando los campos tengan el formato correcto";
                                 this.idregistro = 0;
                                 this.nombre_persona = "";
                                 this.nombre_ejemplar = "";
@@ -39634,9 +39672,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                                 this.idpersona = data["idpersona"];
                                 this.registro_id = data["id"];
                                 this.tema = data["tema"];
+                                this.alertAgregar = "El registro se actualizará cuando los campos tengan el formato correcto";
                                 this.persona = data["persona"];
                                 this.ejemplar = data["ejemplar"];
-                                this.celular = data["celular"];
+                                this.celular = data['celular'];
                                 this.nombre_persona = data["nombre_persona"];
                             }
                     }
@@ -39739,7 +39778,15 @@ var render = function() {
                       }
                     }
                   },
-                  [_c("option", { attrs: { value: "tema" } }, [_vm._v("tema")])]
+                  [
+                    _c("option", { attrs: { value: "tema" } }, [
+                      _vm._v("tema")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "tema" } }, [
+                      _vm._v("celular")
+                    ])
+                  ]
                 ),
                 _vm._v(" "),
                 _c("input", {
@@ -40112,14 +40159,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group row" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "col-md-3 form-control-label",
-                          attrs: { for: "text-input" }
-                        },
-                        [_vm._v("Celular")]
-                      ),
+                      _vm._m(2),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
                         _c("input", {
@@ -40132,7 +40172,11 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control",
-                          attrs: { type: "text", placeholder: "celular" },
+                          attrs: {
+                            type: "number",
+                            pattern: "[1-9]{1}[0-9]{9}",
+                            placeholder: "Celular"
+                          },
                           domProps: { value: _vm.celular },
                           on: {
                             input: function($event) {
@@ -40173,7 +40217,13 @@ var render = function() {
                           })
                         )
                       ]
-                    )
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text-center text-error" }, [
+                      _c("div", {
+                        domProps: { textContent: _vm._s(_vm.alertAgregar) }
+                      })
+                    ])
                   ]
                 )
               ]),
@@ -40266,6 +40316,19 @@ var staticRenderFns = [
         _c("th", [_vm._v("fecha")])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "col-md-3 form-control-label",
+        attrs: { for: "text-input" }
+      },
+      [_c("strong", [_vm._v("Celular")]), _vm._v("(10 dígitos)")]
+    )
   }
 ]
 render._withStripped = true

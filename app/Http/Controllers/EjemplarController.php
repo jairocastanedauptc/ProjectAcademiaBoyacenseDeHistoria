@@ -61,9 +61,14 @@ class EjemplarController extends Controller
     {
         if (!$request->ajax()) return redirect('/');
         
-        $this->validate( $request,['fecha_publicacion' => 'required|regex:/\b[0-9]{4}/',]);
+        $this->validate( $request,['fecha_publicacion' => 'required|digits:4|integer|min:1900|max:'.(date('Y')+1),
+        'descripcion'=>['required','string'],
+        'editorial'=>['string'],
+        'autor'=>['string','regex:/[A-Za-z ]/'],
+        'cantidad'=>['required','min:1','max:50','integer'],
+        'titulo' => ['required','regex:/^[A-Z\s]/',]
+        ]);
         $ejemplar = new Ejemplar();
-
         $ejemplar->idcategoria =$request->idcategoria;
         $ejemplar->idcoleccion =$request->idcoleccion;
         
@@ -97,7 +102,14 @@ class EjemplarController extends Controller
     public function update(Request $request)
      {
          if (!$request->ajax()) return redirect('/');
-         $this->validate( $request,['fecha_publicacion' => 'required|regex:/\b[0-9]{4}/',]);
+         $this->validate( $request,['fecha_publicacion' => 'required|digits:4|integer|min:1900|max:'.(date('Y')+1),
+        'descripcion'=>['required','string'],
+        'editorial'=>['string'],
+        'autor'=>['string','regex:/[A-Za-z ]/'],
+        'cantidad'=>['required','min:1','max:50','integer'],
+        'titulo' => ['required','regex:/^[A-Z\s]/',]
+        ]);
+
          $ejemplar = Ejemplar::findOrFail($request->id);
          $ejemplar->idcategoria =$request->idcategoria;
          $ejemplar->idcoleccion =$request->idcoleccion;
@@ -129,7 +141,8 @@ class EjemplarController extends Controller
     
                 $extension = 'png'; 
             }
-    
+            
+            //$fileName= str_random().'.'.$extension;
             $fileName= str_random().'.'.$extension;
             
             $path = public_path().'/img/ejemplar/'.$fileName;

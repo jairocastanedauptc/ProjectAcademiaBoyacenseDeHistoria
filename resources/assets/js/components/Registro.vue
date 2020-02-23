@@ -24,6 +24,7 @@
                                 <div class="input-group">
                                     <select class="form-control col-md-3" v-model="criterio">
                                       <option value="tema">tema</option>
+                                      <option value="tema">celular</option>
                                     </select>
                                     <input type="text" v-model="buscar" @keyup.enter="listarRegistro(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
                                     <button type="submit" @click="listarRegistro(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
@@ -137,9 +138,9 @@
                                     </div>
                                 </div>
                                  <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Celular</label>
+                                    <label class="col-md-3 form-control-label" for="text-input"><strong>Celular</strong>(10 dígitos)</label>
                                     <div class="col-md-9">
-                                        <input type="text"  class="form-control" v-model="celular" placeholder="celular">
+                                        <input type="number"  v-model="celular" class="form-control" pattern="[1-9]{1}[0-9]{9}" placeholder="Celular">
                                     </div>
                                 </div> 
 
@@ -150,6 +151,10 @@
                                         <div v-for="error in errorMostrarMsjRegistro" :key="error" v-text="error"></div>
                                     </div>
                                 </div>
+                                <div class="text-center text-error">
+                                        
+                                        <div v-text="alertAgregar"></div>
+                                    </div>
                                 
                             </form>
                         </div>
@@ -185,6 +190,7 @@
             tituloModal:"",
             tipoAccion:0,
             errorRegistro :0,
+            alertAgregar:"",
             errorMostrarMsjRegistro:[],
            
             pagination:{
@@ -288,7 +294,7 @@
                     'nombre_persona':this.nombre_persona,
                     'idejemplar':this.idejemplar,
                     'tema': this.tema,
-                    'celular':this.celular
+                    'celular' : this.celular,
                 }).then(function(response){
                     me.cerrarModal();
                     me.listarRegistro(1,'','tema');
@@ -321,7 +327,7 @@
                     'idejemplar':this.idejemplar,
                     'tema': this.tema,
                     'id':this.registro_id,
-                    'celular':this.celular
+                    'celular' : this.celular,
                 }).then(function (response) {
                     me.cerrarModal();
                     me.listarRegistro(1,'','tema');
@@ -435,6 +441,7 @@
                                 this.modal=1;
                                 this.tema="";
                                 this.tituloModal="Registrar Consulta";
+                                this.alertAgregar="El registro se guardará cuando los campos tengan el formato correcto";
                                 this.idregistro=0;
                                 this.nombre_persona="";                 
                                 this.nombre_ejemplar="";
@@ -452,9 +459,10 @@
                                 this.idpersona=data["idpersona"];
                                 this.registro_id=data["id"];
                                 this.tema=data["tema"];
+                                this.alertAgregar="El registro se actualizará cuando los campos tengan el formato correcto";
                                 this.persona=data["persona"];               
                                 this.ejemplar=data["ejemplar"];
-                                this.celular= data["celular"];
+                                this.celular = data['celular'];
                                 this.nombre_persona=data["nombre_persona"];
                             }    
                         }

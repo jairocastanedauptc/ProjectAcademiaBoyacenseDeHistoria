@@ -188,7 +188,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="email-input">Año de publicación</label>
+                                    <label class="col-md-3 form-control-label" for="email-input"><strong>Año de publicación</strong>(>=1900)</label>
                                     <div class="col-md-9">
                                         <input type="text" name="fecha_publicacion" id="fecha_publicacion" v-model="fecha_publicacion" class="form-control" placeholder="ejemplo: 1995">
                                     </div>
@@ -223,6 +223,10 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="text-center text-error">
+                                        
+                                        <div v-text="alertError"></div>
+                                    </div>
                                  <div class="form-group row">
                                 </div>
                                 <div v-show="errorEjemplar" class="form-group row div-error">
@@ -270,6 +274,7 @@
             arrayEjemplar: [],
             modal:0,
             tituloModal:"",
+            alertError:"",
             tipoAccion:0,
             errorEjemplar :0,
             errorMostrarMsjEjemplar:[],
@@ -376,9 +381,9 @@
                 me.listarEjemplar(page,buscar,criterio);
             },
             registrarEjemplar(){
-                this.titulo= this.titulo.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
+               // this.titulo= this.titulo.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
                 //texto.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
-                this.titulo = this.titulo.toUpperCase();
+                //this.titulo = this.titulo.toUpperCase();
                 //texto.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
 
                 if(this.validarEjemplar()){
@@ -405,6 +410,11 @@
                     if(error.response.status == 422){
                         this.errors= error.response.data.errors;
                         this.errorMostrarMsjEjemplar.push("El formato del año de publicación No es válido");
+                        //console.log(error.response);
+                    }
+                     if(error.response.status == 500){
+                        
+                        console.log(error.response);
                     }
                 });
                 //.catch(function(error => ){
@@ -504,6 +514,9 @@
                     if(error.response.status == 422){
                         this.errors= error.response.data.errors;
                         this.errorMostrarMsjEjemplar.push("El formato del año de publicación no es válido");
+                    }
+                    if(error.response.status == 500){             
+                        console.log(error.response);
                     }
                 }); 
                 
@@ -627,6 +640,7 @@
                                 this.titulo="";
                                 this.descripcion="";
                                 this.tituloModal="Registrar Ejemplar";
+                                this.alertError="El ejemplar se registrará cuando el formato de todos los campos sea el correcto";
                                 this.idcategoria=0;
                                 this.nombre_categoria="";
                                 this.idcoleccion=0;
@@ -645,7 +659,8 @@
                                 this.modal=1;
                                 this.tipoAccion=2;
                                 this.tituloModal="Actualizar Ejemplar";
-                                
+                                this.alertError="El ejemplar se actualizará cuando el formato de todos los campos sea el correcto";
+
                                 this.ejemplar_id=data["id"];
                                 this.titulo=data["titulo"];
                                 this.autor=data["autor"];

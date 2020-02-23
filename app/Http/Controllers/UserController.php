@@ -68,7 +68,7 @@ class UserController extends Controller
                 'email'=>['required','email'],
                 'usuario'=>['required','string','unique:users,usuario'],
                 'password'=>['required','min:8','max:50'],
-                'celular'=>['required','digits:10']
+                'celular'=>['required','digits:10','integer']
             ]
             /*[
                 'nombres.required'=>'Los nombres son obligatorios',
@@ -110,8 +110,17 @@ class UserController extends Controller
     public function update(Request $request)
     {
         if (!$request->ajax()) return redirect('/');
+
+        $fields =$request->validate([
+            'nombres'=>'regex:/[A-Za-z]/',
+            'apellidos'=> 'regex:/[A-Za-z]/',
+            'email'=>['required','email'],
+            'usuario'=>['required','string','unique:users,usuario'],
+            'password'=>['required','min:8','max:50'],
+            'celular'=>['required','digits:10']
+        ]);
          
-        try{
+        //try{
             DB::beginTransaction();
  
             //Buscar primero el proveedor a modificar
@@ -133,10 +142,9 @@ class UserController extends Controller
  
             DB::commit();
  
-        } catch (Exception $e){
+        /*} catch (Exception $e){
             DB::rollBack();
-        }
- 
+        }*/
     }
  
     public function desactivar(Request $request)

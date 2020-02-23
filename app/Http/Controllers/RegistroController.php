@@ -50,8 +50,12 @@ class RegistroController extends Controller
     public function store(Request $request)
     {
         if (!$request->ajax()) return redirect('/');
+        $this->validate( $request,['nombre'=>['string','regex:/[A-Za-z ]/'],
+        'tema'=>['string','regex:/[A-Za-z ]/'],
+        'celular'=>['required','regex:/[0-9]{10}/']
+        ]);
 
-        try{
+        //try{
             DB::beginTransaction();
             $persona = new Persona();
             $persona->nombres = $request->nombre_persona;
@@ -66,9 +70,9 @@ class RegistroController extends Controller
  
             DB::commit();
  
-        } catch (Exception $e){
+       /* } catch (Exception $e){
             DB::rollBack();
-        }
+        }*/
      }
     public function update(Request $request)
     {
