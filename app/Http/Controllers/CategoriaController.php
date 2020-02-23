@@ -36,6 +36,8 @@ class CategoriaController extends Controller
     public function store(Request $request)
     {
         if (!$request->ajax()) return redirect('/');
+        //$this->validate( $request,['nombre' => 'required|regex:/[A-Za-z]/',]);
+        $this->validate( $request,['nombre' => 'required|regex:/^[A-Z\s]+$/u',]);
         $categoria = new Categoria();
         $categoria->nombre = $request->nombre;
         $categoria->descripcion= $request->descripcion;
@@ -45,6 +47,7 @@ class CategoriaController extends Controller
     public function update(Request $request)
     {
         if (!$request->ajax()) return redirect('/');
+        $this->validate( $request,['nombre' => 'required|regex:/^[A-Z\s]+$/u',]);
         $categoria = Categoria::findOrFail($request->id);
         $categoria->nombre = $request->nombre;
         $categoria->descripcion= $request->descripcion;

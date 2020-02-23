@@ -147,13 +147,30 @@
                                     </div>
                                 </div>
 
-                                <div v-show="errorPersona" class="form-group row div-error">
+                              
+                                  <div v-show="errorPersona" class="form-group row div-error">
                                     <div class="text-center text-error">
-                                        <div v-for="error in errorMostrarMsjPersona" :key="error" v-text="error">
-
-                                        </div>
+                                        <div v-for="error in errorMostrarMsjPersona" :key="error" v-text="error"></div>
+                                    </div>
+                                    <div class="text-center text-error">
+                                        <span v-if="errors.nombres">{{errors.nombres}}</span>
+                                    </div>
+                                    <div class="text-center text-error">
+                                        <span v-if="errors.apellidos">{{errors.apellidos}}</span>
+                                    </div>
+                                    <div class="text-center text-error">
+                                        <span v-if="errors.celular">{{errors.celular}}</span>
+                                    </div>
+                                    <div class="text-center text-error">
+                                        <span v-if="errors.email">{{errors.email}}</span>
+                                    </div>
+                                    <div class="text-center text-error">
+                                        <span v-if="errors.usuario">{{errors.usuario}}</span>
                                     </div>
                                 </div>
+                                <div class="text-center text-error">
+                                        <span v-if="errors.nombres">{{errors.nombres}}</span>
+                                    </div>
 
                             </form>
                         </div>
@@ -186,6 +203,7 @@
                 arrayPersona : [],
                 arrayRol : [],
                 modal : 0,
+                errors:[],
                 tituloModal : '',
                 tipoAccion : 0,
                 errorPersona : 0,
@@ -266,8 +284,7 @@
             registrarPersona(){
                 if (this.validarPersona()){
                     return;
-                }
-                
+                }    
                 let me = this;
 
                 axios.post('/user/registrar',{
@@ -282,8 +299,11 @@
                 }).then(function (response) {
                     me.cerrarModal();
                     me.listarPersona(1,'','nombres');
-                }).catch(function (error) {
-                    console.log(error);
+                }).catch(error =>{
+                    if(error.response.status == 422){    
+                        this.errors= error.response.data.errors;
+                        this.errorMostrarMsjPersona.push("El nombre debe ser letras en mayuscula,sin tildes ni caracteres especiales");
+                    }
                 });
             },
             actualizarPersona(){
@@ -305,10 +325,16 @@
                 }).then(function (response) {
                     me.cerrarModal();
                     me.listarPersona(1,'','nombres');
-                }).catch(function (error) {
-                    console.log(error);
-                }); 
-                
+                })
+                 .catch(function(error){
+                    console.log(error.response);
+                });
+                /*.catch(error =>{
+                    if(error.response.status == 422){    
+                        this.errors= error.response.data.errors;
+                        this.errorMostrarMsjPersona.push("El nombre debe ser letras en mayuscula,sin tildes ni caracteres especiales");
+                    }
+                });*/
             },            
             validarPersona(){
                 this.errorPersona=0;

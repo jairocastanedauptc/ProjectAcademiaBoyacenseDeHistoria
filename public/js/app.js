@@ -33212,6 +33212,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -33224,6 +33228,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             tipoAccion: 0,
             errorCategoria: 0,
             errorMostrarMsjCategoria: [],
+            errors: [],
             categoria_id: 0,
             pagination: {
 
@@ -33287,9 +33292,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             me.listarCategoria(page, buscar, criterio);
         },
         registrarCategoria: function registrarCategoria() {
-            this.nombre = this.nombre.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+            var _this = this;
+
+            //this.nombre= this.nombre.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
             //texto.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
-            this.nombre = this.nombre.toUpperCase();
+            //this.nombre = this.nombre.toUpperCase();
             if (this.validarCategoria()) {
                 return;
             }
@@ -33302,10 +33309,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 me.cerrarModal();
                 me.listarCategoria(1, '', 'nombre');
             }).catch(function (error) {
-                console.log(error);
+                if (error.response.status == 422) {
+                    _this.errors = error.response.data.errors;
+                    _this.errorMostrarMsjCategoria.push("El nombre debe ser letras en mayuscula,sin tildes ni caracteres especiales");
+                }
             });
         },
         actualizarCategoria: function actualizarCategoria() {
+            var _this2 = this;
 
             if (this.validarCategoriaActualizar()) {
                 return;
@@ -33321,11 +33332,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 me.cerrarModal();
                 me.listarCategoria(1, '', 'nombre');
             }).catch(function (error) {
-                console.log(error);
+                if (error.response.status == 422) {
+                    _this2.errors = error.response.data.errors;
+                    _this2.errorMostrarMsjCategoria.push("El nombre debe ser letras en mayuscula,sin tildes ni caracteres especiales");
+                }
             });
         },
         desactivarCategoria: function desactivarCategoria(id) {
-            var _this = this;
+            var _this3 = this;
 
             swal({
                 title: 'Está seguro de desactivar esta categoría?',
@@ -33341,7 +33355,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 reverseButtons: true
             }).then(function (result) {
                 if (result.value) {
-                    var me = _this;
+                    var me = _this3;
 
                     axios.put('/categoria/desactivar', {
                         'id': id
@@ -33357,7 +33371,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         activarCategoria: function activarCategoria(id) {
-            var _this2 = this;
+            var _this4 = this;
 
             swal({
                 title: 'Esta seguro de activar esta Categoría?',
@@ -33373,7 +33387,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 reverseButtons: true
             }).then(function (result) {
                 if (result.value) {
-                    var me = _this2;
+                    var me = _this4;
 
                     axios.put('/categoria/activar', {
                         'id': id
@@ -33399,17 +33413,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return this.errorCategoria;
         },
         validarCategoria: function validarCategoria() {
-            var _this3 = this;
+            var _this5 = this;
 
             this.errorCategoria = 0;
             this.errorMostrarMsjCategoria = [];
             this.arrayCategoria.forEach(function (element) {
-                if (element.nombre == _this3.nombre) {
+                if (element.nombre == _this5.nombre) {
                     //this.errorCategoria=0;
-                    _this3.errorMostrarMsjCategoria.push("Esta categoria ya existe");
-                    if (_this3.errorMostrarMsjCategoria.length) _this3.errorCategoria = 1;
+                    _this5.errorMostrarMsjCategoria.push("Esta categoria ya existe");
+                    if (_this5.errorMostrarMsjCategoria.length) _this5.errorCategoria = 1;
                     alert(element.nombre);
-                    return _this3.errorCategoria;
+                    return _this5.errorCategoria;
                 }
             });
             if (!this.nombre) this.errorMostrarMsjCategoria.push("El nombre no puede estar vacío");
@@ -33914,7 +33928,13 @@ var render = function() {
                               domProps: { textContent: _vm._s(error) }
                             })
                           })
-                        )
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "text-center text-error" }, [
+                          _vm.errors.nombre
+                            ? _c("span", [_vm._v(_vm._s(_vm.errors.nombre))])
+                            : _vm._e()
+                        ])
                       ]
                     )
                   ]
@@ -34248,6 +34268,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -34260,6 +34284,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             tipoAccion: 0,
             errorColeccion: 0,
             errorMostrarMsjColeccion: [],
+            errors: [],
             coleccion_id: 0,
             pagination: {
 
@@ -34323,9 +34348,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             me.listarColeccion(page, buscar, criterio);
         },
         registrarColeccion: function registrarColeccion() {
-            this.nombre = this.nombre.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+            var _this = this;
+
+            //this.nombre= this.nombre.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
             //texto.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
-            this.nombre = this.nombre.toUpperCase();
+            //this.nombre = this.nombre.toUpperCase();
+
             if (this.validarColeccion()) {
                 return;
             }
@@ -34337,10 +34365,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 me.cerrarModal();
                 me.listarColeccion(1, '', 'nombre');
             }).catch(function (error) {
-                console.log(error);
+                if (error.response.status == 422) {
+
+                    _this.errors = error.response.data.errors;
+                    _this.errorMostrarMsjColeccion.push("El nombre debe ser en mayuscula,sin tildes ni caracteres especiales");
+                }
             });
+            //.catch(function(error){
+            //  console.log(error);
+            //});
         },
         actualizarColeccion: function actualizarColeccion() {
+            var _this2 = this;
 
             if (this.validarColeccionActualizar()) {
                 return;
@@ -34356,11 +34392,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 me.cerrarModal();
                 me.listarColeccion(1, '', 'nombre');
             }).catch(function (error) {
-                console.log(error);
+                if (error.response.status == 422) {
+                    _this2.errors = error.response.data.errors;
+                    _this2.errorMostrarMsjColeccion.push("El nombre debe ser letras en mayuscula,sin tildes ni caracteres especiales");
+                }
             });
+            /*}).catch(function (error) {
+                console.log(error);
+            });*/
         },
         desactivarColeccion: function desactivarColeccion(id) {
-            var _this = this;
+            var _this3 = this;
 
             swal({
                 title: 'Esta seguro de desactivar esta colección?',
@@ -34376,7 +34418,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 reverseButtons: true
             }).then(function (result) {
                 if (result.value) {
-                    var me = _this;
+                    var me = _this3;
 
                     axios.put('/coleccion/desactivar', {
                         'id': id
@@ -34392,7 +34434,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         activarColeccion: function activarColeccion(id) {
-            var _this2 = this;
+            var _this4 = this;
 
             swal({
                 title: 'Esta seguro de activar esta colección?',
@@ -34408,7 +34450,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 reverseButtons: true
             }).then(function (result) {
                 if (result.value) {
-                    var me = _this2;
+                    var me = _this4;
 
                     axios.put('/coleccion/activar', {
                         'id': id
@@ -34433,18 +34475,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return this.errorColeccion;
         },
         validarColeccion: function validarColeccion() {
-            var _this3 = this;
+            var _this5 = this;
 
             this.errorColeccion = 0;
             this.errorMostrarMsjColeccion = [];
 
             this.arrayColeccion.forEach(function (element) {
-                if (element.nombre == _this3.nombre) {
+                if (element.nombre == _this5.nombre) {
                     //this.errorCategoria=0;
-                    _this3.errorMostrarMsjColeccion.push("Esta Colección ya existe");
-                    if (_this3.errorMostrarMsjColeccion.length) _this3.errorColeccion = 1;
+                    _this5.errorMostrarMsjColeccion.push("Esta Colección ya existe");
+                    if (_this5.errorMostrarMsjColeccion.length) _this5.errorColeccion = 1;
                     alert(element.nombre);
-                    return _this3.errorColeccion;
+                    return _this5.errorColeccion;
                 }
             });
             if (!this.nombre) this.errorMostrarMsjColeccion.push("El nombre no puede estar vacío");
@@ -34949,7 +34991,13 @@ var render = function() {
                               domProps: { textContent: _vm._s(error) }
                             })
                           })
-                        )
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "text-center text-error" }, [
+                          _vm.errors.nombre
+                            ? _c("span", [_vm._v(_vm._s(_vm.errors.nombre))])
+                            : _vm._e()
+                        ])
                       ]
                     )
                   ]
@@ -35154,14 +35202,6 @@ var _methods;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -36609,13 +36649,7 @@ var render = function() {
                               _vm.cantidad = $event.target.value
                             }
                           }
-                        }),
-                        _vm._v(" "),
-                        _vm.errors.fecha_publicacion
-                          ? _c("span", [
-                              _vm._v(_vm._s(_vm.errors.fecha_publicacion))
-                            ])
-                          : _vm._e()
+                        })
                       ])
                     ]),
                     _vm._v(" "),
@@ -36739,17 +36773,6 @@ var render = function() {
                             : _vm._e()
                         ])
                       ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "text-center text-error" },
-                      _vm._l(_vm.errorMostrarMsjEjemplar, function(error) {
-                        return _c("div", {
-                          key: error,
-                          domProps: { textContent: _vm._s(error) }
-                        })
-                      })
                     )
                   ]
                 )
@@ -37651,6 +37674,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -37666,6 +37706,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             arrayPersona: [],
             arrayRol: [],
             modal: 0,
+            errors: [],
             tituloModal: '',
             tipoAccion: 0,
             errorPersona: 0,
@@ -37742,10 +37783,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             me.listarPersona(page, buscar, criterio);
         },
         registrarPersona: function registrarPersona() {
+            var _this = this;
+
             if (this.validarPersona()) {
                 return;
             }
-
             var me = this;
 
             axios.post('/user/registrar', {
@@ -37761,7 +37803,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 me.cerrarModal();
                 me.listarPersona(1, '', 'nombres');
             }).catch(function (error) {
-                console.log(error);
+                if (error.response.status == 422) {
+                    _this.errors = error.response.data.errors;
+                    _this.errorMostrarMsjPersona.push("El nombre debe ser letras en mayuscula,sin tildes ni caracteres especiales");
+                }
             });
         },
         actualizarPersona: function actualizarPersona() {
@@ -37783,8 +37828,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 me.cerrarModal();
                 me.listarPersona(1, '', 'nombres');
             }).catch(function (error) {
-                console.log(error);
+                console.log(error.response);
             });
+            /*.catch(error =>{
+                if(error.response.status == 422){    
+                    this.errors= error.response.data.errors;
+                    this.errorMostrarMsjPersona.push("El nombre debe ser letras en mayuscula,sin tildes ni caracteres especiales");
+                }
+            });*/
         },
         validarPersona: function validarPersona() {
             this.errorPersona = 0;
@@ -37854,7 +37905,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         desactivarUsuario: function desactivarUsuario(id) {
-            var _this = this;
+            var _this2 = this;
 
             swal({
                 title: 'Esta seguro de desactivar este usuario?',
@@ -37870,7 +37921,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 reverseButtons: true
             }).then(function (result) {
                 if (result.value) {
-                    var me = _this;
+                    var me = _this2;
 
                     axios.put('/user/desactivar', {
                         'id': id
@@ -37886,7 +37937,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         activarUsuario: function activarUsuario(id) {
-            var _this2 = this;
+            var _this3 = this;
 
             swal({
                 title: 'Esta seguro de activar este usuario?',
@@ -37902,7 +37953,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 reverseButtons: true
             }).then(function (result) {
                 if (result.value) {
-                    var me = _this2;
+                    var me = _this3;
 
                     axios.put('/user/activar', {
                         'id': id
@@ -38587,9 +38638,45 @@ var render = function() {
                               domProps: { textContent: _vm._s(error) }
                             })
                           })
-                        )
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "text-center text-error" }, [
+                          _vm.errors.nombres
+                            ? _c("span", [_vm._v(_vm._s(_vm.errors.nombres))])
+                            : _vm._e()
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "text-center text-error" }, [
+                          _vm.errors.apellidos
+                            ? _c("span", [_vm._v(_vm._s(_vm.errors.apellidos))])
+                            : _vm._e()
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "text-center text-error" }, [
+                          _vm.errors.celular
+                            ? _c("span", [_vm._v(_vm._s(_vm.errors.celular))])
+                            : _vm._e()
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "text-center text-error" }, [
+                          _vm.errors.email
+                            ? _c("span", [_vm._v(_vm._s(_vm.errors.email))])
+                            : _vm._e()
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "text-center text-error" }, [
+                          _vm.errors.usuario
+                            ? _c("span", [_vm._v(_vm._s(_vm.errors.usuario))])
+                            : _vm._e()
+                        ])
                       ]
-                    )
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text-center text-error" }, [
+                      _vm.errors.nombres
+                        ? _c("span", [_vm._v(_vm._s(_vm.errors.nombres))])
+                        : _vm._e()
+                    ])
                   ]
                 )
               ]),

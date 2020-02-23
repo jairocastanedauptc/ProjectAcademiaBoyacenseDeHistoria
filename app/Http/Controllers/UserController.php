@@ -49,32 +49,47 @@ class UserController extends Controller
     public function store(Request $request)
     {
         if (!$request->ajax()) return redirect('/');
-         
-        try{
-            DB::beginTransaction();
-            $persona = new Persona();
-            $persona->nombres = $request->nombres;
-            $persona->celular = $request->celular;
-            $persona->apellidos = $request->apellidos;
-            $persona->email = $request->email;
-        
-            $persona->save();
- 
-            $user = new User();
-            $user->usuario = $request->usuario;
-            $user->password = bcrypt( $request->password);
-            $user->condicion = '1';
-            $user->idrol = $request->idrol;          
- 
-            $user->id = $persona->id;
- 
-            $user->save();
- 
-            DB::commit();
- 
-        } catch (Exception $e){
-            DB::rollBack();
-        }
+        //$this->validate( $request,['nombres' => 'required|regex:/^[A-Z\s]+$/u',]);
+        //$this->validate( $request,['apellidos' => 'required|regex:/^[A-Z\s]+$/u',]);
+
+            //$this->validate( $request,['apellidos' => 'required|regex:/^[A-Z\s]+$/u',]);
+            //$this->validate( $request,['celular' => 'required|regex:/([0-9]){10}',]);  
+            //$this->validate( $request,['email' => 'required|email',]);
+            //$this->validate( $request,['usuario' => 'required||regex:/^[a-zA-Z\s]+$/u',]); 
+
+            if($this->validate( $request,['nombres' => 'required|regex:/^[A-Z\s]+$/u',])){
+                if($this->validate( $request,['apellidos' => 'required|regex:/^[A-Z\s]+$/u',])){    
+                    try{
+                        DB::beginTransaction();
+                        
+            
+                        $persona = new Persona();
+                        $persona->nombres = $request->nombres;
+                        $persona->celular = $request->celular;
+                        $persona->apellidos = $request->apellidos;
+                        $persona->email = $request->email;
+                    
+                        $persona->save();
+            
+                        $user = new User();
+                        $user->usuario = $request->usuario;
+                        $user->password = bcrypt( $request->password);
+                        $user->condicion = '1';
+                        $user->idrol = $request->idrol;          
+            
+                        $user->id = $persona->id;
+            
+                        $user->save();
+            
+                        DB::commit();
+            
+                    } catch (Exception $e){
+                        DB::rollBack();
+                    }
+                }    
+            }
+            
+       
  
          
          

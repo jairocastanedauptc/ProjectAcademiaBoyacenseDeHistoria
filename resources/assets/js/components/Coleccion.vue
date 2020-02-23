@@ -114,7 +114,11 @@
                                     <div class="text-center text-error">
                                         <div v-for="error in errorMostrarMsjColeccion" :key="error" v-text="error"></div>
                                     </div>
+                                    <div class="text-center text-error">
+                                        <span v-if="errors.nombre">{{errors.nombre}}</span>
+                                    </div>
                                 </div>
+                                
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -143,6 +147,7 @@
             tipoAccion:0,
             errorColeccion :0,
             errorMostrarMsjColeccion:[],
+            errors:[],
             coleccion_id:0,
             pagination:{
  
@@ -187,7 +192,7 @@
         },
         methods :{
             
-           listarColeccion (page,buscar,criterio){
+            listarColeccion (page,buscar,criterio){
                 let me=this;
                 var url= '/coleccion?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
@@ -207,9 +212,10 @@
                 me.listarColeccion(page,buscar,criterio);
             },
             registrarColeccion(){
-                this.nombre= this.nombre.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
+                //this.nombre= this.nombre.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
                 //texto.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
-                this.nombre = this.nombre.toUpperCase();
+                //this.nombre = this.nombre.toUpperCase();
+               
                 if(this.validarColeccion()){
                     return;
                 }
@@ -221,9 +227,16 @@
                     me.cerrarModal();
                     me.listarColeccion(1,'','nombre');
                 })
-                .catch(function(error){
-                    console.log(error);
+                .catch(error =>{
+                    if(error.response.status == 422){
+                        
+                        this.errors= error.response.data.errors;
+                        this.errorMostrarMsjColeccion.push("El nombre debe ser en mayuscula,sin tildes ni caracteres especiales");
+                    }
                 });
+                //.catch(function(error){
+                  //  console.log(error);
+                //});
             },
             actualizarColeccion(){
                 
@@ -240,9 +253,16 @@
                 }).then(function (response) {
                     me.cerrarModal();
                     me.listarColeccion(1,'','nombre');
-                }).catch(function (error) {
+                })
+                .catch(error =>{
+                    if(error.response.status == 422){    
+                        this.errors= error.response.data.errors;
+                        this.errorMostrarMsjColeccion.push("El nombre debe ser letras en mayuscula,sin tildes ni caracteres especiales");
+                    }
+                });    
+                /*}).catch(function (error) {
                     console.log(error);
-                }); 
+                });*/ 
             },
             desactivarColeccion(id){
                swal({

@@ -103,6 +103,7 @@
                                     <div class="col-md-9">
                                         <input type="text"  class="form-control" v-model="nombre" placeholder="Nombre de colección">
                                     </div>
+                                    
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="email-input">Descripción</label>
@@ -113,6 +114,9 @@
                                 <div v-show="errorCategoria" class="form-group row div-error">
                                     <div class="text-center text-error">
                                         <div v-for="error in errorMostrarMsjCategoria" :key="error" v-text="error"></div>
+                                    </div>
+                                    <div class="text-center text-error">
+                                        <span v-if="errors.nombre">{{errors.nombre}}</span>
                                     </div>
                                 </div>
                             </form>
@@ -143,6 +147,7 @@
             tipoAccion:0,
             errorCategoria :0,
             errorMostrarMsjCategoria:[],
+            errors:[],
             categoria_id:0,
             pagination:{
  
@@ -207,9 +212,9 @@
                 me.listarCategoria(page,buscar,criterio);
             },
             registrarCategoria(){
-                this.nombre= this.nombre.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
+                //this.nombre= this.nombre.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
                 //texto.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
-                this.nombre = this.nombre.toUpperCase();
+                //this.nombre = this.nombre.toUpperCase();
                 if(this.validarCategoria()){
                     return;
                 }
@@ -222,8 +227,11 @@
                     me.cerrarModal();
                     me.listarCategoria(1,'','nombre');
                 })
-                .catch(function(error){
-                    console.log(error);
+                .catch(error =>{
+                    if(error.response.status == 422){    
+                        this.errors= error.response.data.errors;
+                        this.errorMostrarMsjCategoria.push("El nombre debe ser letras en mayuscula,sin tildes ni caracteres especiales");
+                    }
                 });
             },
             actualizarCategoria(){
@@ -241,8 +249,12 @@
                 }).then(function (response) {
                     me.cerrarModal();
                     me.listarCategoria(1,'','nombre');
-                }).catch(function (error) {
-                    console.log(error);
+                })
+                .catch(error =>{
+                    if(error.response.status == 422){    
+                        this.errors= error.response.data.errors;
+                        this.errorMostrarMsjCategoria.push("El nombre debe ser letras en mayuscula,sin tildes ni caracteres especiales");
+                    }
                 }); 
             },
             desactivarCategoria(id){

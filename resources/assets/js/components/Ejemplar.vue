@@ -197,7 +197,6 @@
                                     <label class="col-md-3 form-control-label" for="email-input">Cantidad</label>
                                     <div class="col-md-9">
                                         <input type="number" v-model="cantidad" class="form-control" placeholder="cantidad">
-                                        <span v-if="errors.fecha_publicacion">{{errors.fecha_publicacion}}</span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -233,13 +232,6 @@
                                     <div class="text-center text-error">
                                         <span v-if="errors.fecha_publicacion">{{errors.fecha_publicacion}}</span>
                                     </div>
-                                </div>
-
-
-
-                                
-                                <div class="text-center text-error">
-                                        <div v-for="error in errorMostrarMsjEjemplar" :key="error" v-text="error"></div>
                                 </div>
                                 
                             </form>
