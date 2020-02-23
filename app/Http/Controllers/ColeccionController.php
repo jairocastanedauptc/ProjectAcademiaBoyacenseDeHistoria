@@ -48,10 +48,6 @@ class ColeccionController extends Controller
         if (!$request->ajax()) return redirect('/');
         
         $this->validate( $request,['nombre' => 'required|regex:/^[A-Z\s]+$/u',]);
-        //$nombre = uft8_decode(normaliza($request->nombre));
-        //$nombre= $nombre.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
-        //texto.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
-        //$nombre = strtoupper($request->nombre);
         $coleccion = new Coleccion();
         
         $coleccion->nombre = $request->nombre;

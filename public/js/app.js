@@ -37691,6 +37691,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -37707,6 +37725,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             arrayRol: [],
             modal: 0,
             errors: [],
+            errorAux: [],
             tituloModal: '',
             tipoAccion: 0,
             errorPersona: 0,
@@ -37783,8 +37802,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             me.listarPersona(page, buscar, criterio);
         },
         registrarPersona: function registrarPersona() {
-            var _this = this;
-
             if (this.validarPersona()) {
                 return;
             }
@@ -37798,14 +37815,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 'usuario': this.usuario,
                 'password': this.password,
                 'idrol': this.idrol
-
+                /*}).then(response =>{
+                 this.nombres=''
+                this.email=''
+                this.usuario=''
+                this.password=''
+                this.apellidos=''
+                this.celular='' 
+                me.listarPersona(1,'','nombres');
+                me.cerrarModal();*/
             }).then(function (response) {
                 me.cerrarModal();
                 me.listarPersona(1, '', 'nombres');
             }).catch(function (error) {
                 if (error.response.status == 422) {
-                    _this.errors = error.response.data.errors;
-                    _this.errorMostrarMsjPersona.push("El nombre debe ser letras en mayuscula,sin tildes ni caracteres especiales");
+                    //this.errors= error.response.data.errors;
+                    //this.errorAux.push("Asegurese de que los campos estén en el formato adecuado");
+                    //this.errorMostrarMsjPersona.push("El nombre debe ser letras en mayuscula,sin tildes ni caracteres especiales");
+
+                }
+                if (error.response.status == 500) {
+                    console.log(error.response);
                 }
             });
         },
@@ -37814,7 +37844,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return;
             }
             var me = this;
-
             axios.put('/user/actualizar', {
                 'nombres': this.nombres,
                 'apellidos': this.apellidos,
@@ -37905,7 +37934,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         desactivarUsuario: function desactivarUsuario(id) {
-            var _this2 = this;
+            var _this = this;
 
             swal({
                 title: 'Esta seguro de desactivar este usuario?',
@@ -37921,7 +37950,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 reverseButtons: true
             }).then(function (result) {
                 if (result.value) {
-                    var me = _this2;
+                    var me = _this;
 
                     axios.put('/user/desactivar', {
                         'id': id
@@ -37937,7 +37966,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         activarUsuario: function activarUsuario(id) {
-            var _this3 = this;
+            var _this2 = this;
 
             swal({
                 title: 'Esta seguro de activar este usuario?',
@@ -37953,7 +37982,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 reverseButtons: true
             }).then(function (result) {
                 if (result.value) {
-                    var me = _this3;
+                    var me = _this2;
 
                     axios.put('/user/activar', {
                         'id': id
@@ -38344,7 +38373,7 @@ var render = function() {
                           staticClass: "col-md-3 form-control-label",
                           attrs: { for: "text-input" }
                         },
-                        [_vm._v("Nombre (*)")]
+                        [_vm._v("Nombre")]
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
@@ -38411,14 +38440,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group row" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "col-md-3 form-control-label",
-                          attrs: { for: "email-input" }
-                        },
-                        [_vm._v("Celular")]
-                      ),
+                      _vm._m(2),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
                         _c("input", {
@@ -38431,7 +38453,11 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control",
-                          attrs: { type: "text", placeholder: "Celular" },
+                          attrs: {
+                            type: "number",
+                            pattern: "[1-9]{1}[0-9]{9}",
+                            placeholder: "Celular"
+                          },
                           domProps: { value: _vm.celular },
                           on: {
                             input: function($event) {
@@ -38546,7 +38572,7 @@ var render = function() {
                           staticClass: "col-md-3 form-control-label",
                           attrs: { for: "email-input" }
                         },
-                        [_vm._v("Usuario (*)")]
+                        [_vm._v("Usuario")]
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
@@ -38578,14 +38604,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group row" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "col-md-3 form-control-label",
-                          attrs: { for: "email-input" }
-                        },
-                        [_vm._v("Password (*)")]
-                      ),
+                      _vm._m(3),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
                         _c("input", {
@@ -38615,6 +38634,8 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
+                    _vm._m(4),
+                    _vm._v(" "),
                     _c(
                       "div",
                       {
@@ -38640,41 +38661,51 @@ var render = function() {
                           })
                         ),
                         _vm._v(" "),
+                        _vm._l(_vm.errorMostrarMsjPersona, function(
+                          errorMostrarMsjPersona,
+                          i
+                        ) {
+                          return _c("div", { key: i })
+                        }),
+                        _vm._v(" "),
+                        _vm._l(_vm.errorMostrarMsjPersona, function(
+                          errorMostrarMsjPersona,
+                          i
+                        ) {
+                          return _c("div", { key: "A-" + i })
+                        }),
+                        _vm._v(" "),
+                        _vm._l(_vm.errorMostrarMsjPersona, function(
+                          errorMostrarMsjPersona,
+                          i
+                        ) {
+                          return _c("div", { key: "B-" + i })
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "text-center text-error" },
+                          _vm._l(_vm.errorAux, function(type) {
+                            return _c(
+                              "li",
+                              { key: type, staticClass: "list-group-item" },
+                              [_vm._v(_vm._s(type))]
+                            )
+                          })
+                        ),
+                        _vm._v(" "),
                         _c("div", { staticClass: "text-center text-error" }, [
                           _vm.errors.nombres
                             ? _c("span", [_vm._v(_vm._s(_vm.errors.nombres))])
                             : _vm._e()
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "text-center text-error" }, [
-                          _vm.errors.apellidos
-                            ? _c("span", [_vm._v(_vm._s(_vm.errors.apellidos))])
-                            : _vm._e()
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "text-center text-error" }, [
-                          _vm.errors.celular
-                            ? _c("span", [_vm._v(_vm._s(_vm.errors.celular))])
-                            : _vm._e()
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "text-center text-error" }, [
-                          _vm.errors.email
-                            ? _c("span", [_vm._v(_vm._s(_vm.errors.email))])
-                            : _vm._e()
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "text-center text-error" }, [
-                          _vm.errors.usuario
-                            ? _c("span", [_vm._v(_vm._s(_vm.errors.usuario))])
-                            : _vm._e()
                         ])
-                      ]
+                      ],
+                      2
                     ),
                     _vm._v(" "),
                     _c("div", { staticClass: "text-center text-error" }, [
                       _vm.errors.nombres
-                        ? _c("span", [_vm._v(_vm._s(_vm.errors.nombres))])
+                        ? _c("span", [_vm._v(_vm._s(_vm.error.nombres))])
                         : _vm._e()
                     ])
                   ]
@@ -38765,6 +38796,44 @@ var staticRenderFns = [
         _c("th", [_vm._v("Usuario")]),
         _vm._v(" "),
         _c("th", [_vm._v("Rol")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "col-md-3 form-control-label",
+        attrs: { for: "email-input" }
+      },
+      [_c("strong", [_vm._v("Celular")]), _vm._v("(10 digitos)")]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "col-md-3 form-control-label",
+        attrs: { for: "email-input" }
+      },
+      [_c("strong", [_vm._v("Password ")]), _vm._v("(minimo 8 caracteres)")]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-center text-error" }, [
+      _c("div", [
+        _vm._v(
+          "El usuario se agregará cuando el formato de todos lo campos sea correcto"
+        )
       ])
     ])
   }

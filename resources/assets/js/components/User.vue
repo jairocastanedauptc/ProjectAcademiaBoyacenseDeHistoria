@@ -96,29 +96,30 @@
                         <div class="modal-body">
                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Nombre (*)</label>
+                                    <label class="col-md-3 form-control-label" for="text-input">Nombre(s)</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="nombres" class="form-control" placeholder="Nombre de la persona">                                        
+                                        <input type="text" v-model="nombres" class="form-control" placeholder="Nombre de la persona">                                     
                                     </div>
                                 </div>
                                 
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Apellidos</label>
+                                    <label class="col-md-3 form-control-label" for="text-input">Apellido(s)</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="apellidos" class="form-control" placeholder="Apellidos">                                        
+                                        <input type="text" v-model="apellidos" class="form-control" placeholder="Apellidos">                                     
                                     </div>
                                 </div>
                                 
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="email-input">Celular</label>
+                                    <label class="col-md-3 form-control-label" for="email-input"><strong>Celular</strong>(10 digitos)</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="celular" class="form-control" placeholder="Celular">
+                                        <input type="number"  v-model="celular" class="form-control" pattern="[1-9]{1}[0-9]{9}" placeholder="Celular">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="email-input">Email</label>
                                     <div class="col-md-9">
                                         <input type="email" v-model="email" class="form-control" placeholder="Email">
+                                        
                                     </div>
                                 </div>
                                 
@@ -135,27 +136,40 @@
                                 </div>
                                 
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="email-input">Usuario (*)</label>
+                                    <label class="col-md-3 form-control-label" for="email-input">Usuario</label>
                                     <div class="col-md-9">
                                         <input type="text" v-model="usuario" class="form-control" placeholder="Nombre de usuario">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="email-input">Password (*)</label>
+                                    <label class="col-md-3 form-control-label" for="email-input"><strong>Password </strong>(minimo 8 caracteres)</label>
                                     <div class="col-md-9">
                                         <input type="password" v-model="password" class="form-control" placeholder="Password de acceso">
                                     </div>
                                 </div>
+                                <div class="text-center text-error">
+                                        <div>El usuario se agregará cuando el formato de todos lo campos sea correcto</div>
+                                    </div>
 
                               
                                   <div v-show="errorPersona" class="form-group row div-error">
                                     <div class="text-center text-error">
                                         <div v-for="error in errorMostrarMsjPersona" :key="error" v-text="error"></div>
                                     </div>
+                                    <div v-for="(errorMostrarMsjPersona, i) in errorMostrarMsjPersona" :key="i"></div>
+
+                                            <div v-for="(errorMostrarMsjPersona, i) in errorMostrarMsjPersona" :key="`A-${i}`"></div>
+
+                                            <div v-for="(errorMostrarMsjPersona, i) in errorMostrarMsjPersona" :key="`B-${i}`"></div>
+                                    <div class="text-center text-error">
+                                        <li class="list-group-item" v-for="type in errorAux"  v-bind:key="type">{{type}}</li>
+                
+                                    </div>
                                     <div class="text-center text-error">
                                         <span v-if="errors.nombres">{{errors.nombres}}</span>
                                     </div>
-                                    <div class="text-center text-error">
+                                    
+                                    <!--<div class="text-center text-error">
                                         <span v-if="errors.apellidos">{{errors.apellidos}}</span>
                                     </div>
                                     <div class="text-center text-error">
@@ -167,10 +181,14 @@
                                     <div class="text-center text-error">
                                         <span v-if="errors.usuario">{{errors.usuario}}</span>
                                     </div>
-                                </div>
-                                <div class="text-center text-error">
+                                     </div>
+                                    <div class="text-center text-error">
                                         <span v-if="errors.nombres">{{errors.nombres}}</span>
-                                    </div>
+                                    </div>-->
+                                  </div>
+                                  <div class="text-center text-error">
+                                        <span v-if="errors.nombres">{{error.nombres}}</span>
+                                  </div>
 
                             </form>
                         </div>
@@ -204,6 +222,7 @@
                 arrayRol : [],
                 modal : 0,
                 errors:[],
+                errorAux:[],
                 tituloModal : '',
                 tipoAccion : 0,
                 errorPersona : 0,
@@ -295,14 +314,28 @@
                     'usuario': this.usuario,
                     'password': this.password,
                     'idrol' : this.idrol
+                /*}).then(response =>{
 
+                this.nombres=''
+                this.email=''
+                this.usuario=''
+                this.password=''
+                this.apellidos=''
+                this.celular='' 
+                me.listarPersona(1,'','nombres');
+                me.cerrarModal();*/
                 }).then(function (response) {
-                    me.cerrarModal();
-                    me.listarPersona(1,'','nombres');
+                  me.cerrarModal();
+                  me.listarPersona(1,'','nombres');
                 }).catch(error =>{
                     if(error.response.status == 422){    
-                        this.errors= error.response.data.errors;
-                        this.errorMostrarMsjPersona.push("El nombre debe ser letras en mayuscula,sin tildes ni caracteres especiales");
+                        //this.errors= error.response.data.errors;
+                        //this.errorAux.push("Asegurese de que los campos estén en el formato adecuado");
+                        //this.errorMostrarMsjPersona.push("El nombre debe ser letras en mayuscula,sin tildes ni caracteres especiales");
+                        
+                    }
+                    if(error.response.status ==500){
+                        console.log(error.response);
                     }
                 });
             },
@@ -311,8 +344,6 @@
                     return;
                 }        
                 let me = this;
-
-
                 axios.put('/user/actualizar',{
                     'nombres': this.nombres,
                     'apellidos' : this.apellidos,

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Persona;
 use Illuminate\Support\Facades\DB;
- 
+//use Illuminate\Support\Facades\Validator; 
 use Illuminate\Http\Request;
  
 class UserController extends Controller
@@ -45,30 +45,50 @@ class UserController extends Controller
             'personas' => $personas
         ];
     }
- 
+
     public function store(Request $request)
     {
-        if (!$request->ajax()) return redirect('/');
-        //$this->validate( $request,['nombres' => 'required|regex:/^[A-Z\s]+$/u',]);
-        //$this->validate( $request,['apellidos' => 'required|regex:/^[A-Z\s]+$/u',]);
-
-            //$this->validate( $request,['apellidos' => 'required|regex:/^[A-Z\s]+$/u',]);
+           // $this->validate( $request,['apellidos' => 'required|regex:/^[A-Z\s]+$/u',]);
             //$this->validate( $request,['celular' => 'required|regex:/([0-9]){10}',]);  
             //$this->validate( $request,['email' => 'required|email',]);
             //$this->validate( $request,['usuario' => 'required||regex:/^[a-zA-Z\s]+$/u',]); 
+            //numeric|between:9,11
+            //'required|regex:/^[\pL\s\-]+$/u'
+        if (!$request->ajax()) return redirect('/');    
+            //$this->validate( $request,['nombres' => 'required|regex:/^[A-Z\s]+$/u',
+            //'apellidos' => 'required|regex:/^[A-Z\s]+$/u',
+            //'celular' => 'required|regex:/([0-9]){10}',
+            //'email' => 'required|email',
+            //'usuario' => 'required||regex:/^[a-zA-Z\s]+$/u'
+            //]); 
 
-            if($this->validate( $request,['nombres' => 'required|regex:/^[A-Z\s]+$/u',])){
-                if($this->validate( $request,['apellidos' => 'required|regex:/^[A-Z\s]+$/u',])){    
-                    try{
+            $fields =$request->validate([
+                'nombres'=>'regex:/[A-Za-z]/',
+                'apellidos'=> 'regex:/[A-Za-z]/',
+                'email'=>['required','email'],
+                'usuario'=>['required','string','unique:users,usuario'],
+                'password'=>['required','min:8','max:50'],
+                'celular'=>['required','digits:10']
+            ]
+            /*[
+                'nombres.required'=>'Los nombres son obligatorios',
+                'apellidos.required'=>'los apellidos son obligatorios',
+                'email.required'=>'el correo es obligatorio',
+                'usuario.required'=>'el usuario es oblogatorio',
+                'password.required'=>'la contraseñaes obligatoria',
+                'celular.required'=>'el celular es obligatorio'
+            ]
+            */
+        );
+            //numeric|between:9,11
+                    //try{
                         DB::beginTransaction();
-                        
-            
+                                   
                         $persona = new Persona();
                         $persona->nombres = $request->nombres;
                         $persona->celular = $request->celular;
                         $persona->apellidos = $request->apellidos;
-                        $persona->email = $request->email;
-                    
+                        $persona->email = $request->email;     
                         $persona->save();
             
                         $user = new User();
@@ -78,21 +98,13 @@ class UserController extends Controller
                         $user->idrol = $request->idrol;          
             
                         $user->id = $persona->id;
-            
                         $user->save();
-            
+    
                         DB::commit();
             
-                    } catch (Exception $e){
-                        DB::rollBack();
-                    }
-                }    
-            }
-            
-       
- 
-         
-         
+                   // } catch (Exception $e){
+                     //   DB::rollBack();
+                    //}              
     }
  
     public function update(Request $request)
