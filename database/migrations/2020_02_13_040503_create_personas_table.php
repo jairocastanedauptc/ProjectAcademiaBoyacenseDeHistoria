@@ -16,7 +16,7 @@ class CreatePersonasTable extends Migration
             $table->string('email', 60)->nullable();
             $table->timestamps();
         });
-        DB::table('personas')->insert(array('id'=>'1','nombres'=>'Jairo Alejandro', 'apellidos'=>'Castaneda Pedraza','celular'=>'3219578963','email'=>'jairo.castaneda@uptc.edu.co'));
+        //DB::table('personas')->insert(array('id'=>'1','nombres'=>'Jairo Alejandro', 'apellidos'=>'Castaneda Pedraza','celular'=>'3219578963','email'=>'jairo.castaneda@uptc.edu.co'));
     }
     public function down()
     {

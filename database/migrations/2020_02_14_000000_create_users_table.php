@@ -21,13 +21,13 @@ class CreateUsersTable extends Migration
  
             $table->rememberToken();
         });
-        DB::table('users')->insert(array(
+       /* DB::table('users')->insert(array(
         'id'=>1,
         'usuario'=>'admin',
         'password'=>encrypt('admin'),
         'condicion'=>1,
         'idrol'=>1
-    ));
+    ));*/
     }
     public function down()
     {

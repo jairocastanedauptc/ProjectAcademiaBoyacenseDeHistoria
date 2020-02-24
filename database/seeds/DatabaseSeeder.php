@@ -10,15 +10,9 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        // $this->call(UsersTableSeeder::class);
-        DB::table('')->insert([
-            
-            'usuario'=>'admin',
-            'password'=>''
-
-        ]);
-        $this->call(Users::class);
+    {   $this->call(RolSeeder::class);
+        $this->call(PersonaSeeder::class);
+        $this->call(UserSeeder::class);
 
     }
 }
