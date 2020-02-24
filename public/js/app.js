@@ -40435,8 +40435,10 @@ exports.push([module.i, "\n.top {\r\n    padding-top:50px;\r\n    height:92px;\r
 
 /***/ }),
 /* 78 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -40481,6 +40483,20 @@ exports.push([module.i, "\n.top {\r\n    padding-top:50px;\r\n    height:92px;\r
 //
 //
 //
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+        data: function data() {},
+
+        methods: {
+                cargarPdf: function cargarPdf() {
+                        window.open('http://localhost:8000/file/manualdeusuario', '_blank');
+                }
+        },
+        mounted: function mounted() {}
+});
 
 /***/ }),
 /* 79 */
@@ -40530,7 +40546,47 @@ var render = function() {
               _vm._v(" "),
               _c("br"),
               _vm._v(" "),
-              _vm._m(2)
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-info",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      _vm.cargarPdf()
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "icon-doc" }),
+                  _vm._v(" Reporte\r\n                        ")
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-row" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-dark col-sm",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        _vm.cargarPdf()
+                      }
+                    }
+                  },
+                  [_vm._v("Descargar Manual de usuario")]
+                ),
+                _vm._v("  \r\n                    "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-dark col-sm",
+                    attrs: { type: "reset" }
+                  },
+                  [_vm._v("Descargar Manual de programador")]
+                )
+              ])
             ])
           ])
         ])
@@ -40560,27 +40616,6 @@ var staticRenderFns = [
     return _c("div", { staticClass: "card-header" }, [
       _c("i", { staticClass: "fa fa-align-justify" }),
       _vm._v("Manuales\r\n                        ")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-row" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-dark col-sm",
-          attrs: { type: "submit", onclick: "" }
-        },
-        [_vm._v("Descargar Manual de usuario")]
-      ),
-      _vm._v("  \r\n                    "),
-      _c(
-        "button",
-        { staticClass: "btn btn-dark col-sm", attrs: { type: "reset" } },
-        [_vm._v("Descargar Manual de programador")]
-      )
     ])
   }
 ]
