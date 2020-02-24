@@ -22,7 +22,7 @@
                                     <img  :src="'img/sistemas.png'" style="width: 100%; height:100%;" >
                                 </div>
                                 <div class="col-8 bg-white ">
-                                    <h5 class="text-justify">Sistema bibliotecario realizado para la Academia Boyacense de Historia como trabajo final de la materia gerencia de proyectos en Ingeniería de Sistemas y Computación de la Universidad Pedagógica y Tecnológica de Colombia Seccional Sogamoso, un proyecto desarrollado por: </h5>
+                                    <h5 class="text-justify">Sistema bibliotecario realizado para la Academia Boyacense de Historia como trabajo final de la materia GERENCIA INFORMÁTICA de Ingeniería de Sistemas y Computación de la Universidad Pedagógica y Tecnológica de Colombia Seccional Sogamoso, un proyecto desarrollado por: </h5>
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item d-flex justify-content-between align-items-center">Hans Arevalo Barrera
                                             <span class="badge badge-primary badge-pill">DIRECTOR</span>
@@ -40,6 +40,9 @@
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-center">Jairo Alejandro Castañeda Pedraza
                                             <span class="badge badge-primary badge-pill">DESARROLLADOR</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">Edmundo Arturo Junco Orduz
+                                            <span class="badge badge-primary badge-pill">DOCENTE DE ASIGNATURA</span>
                                         </li>
                                     </ul>
                                 </div>

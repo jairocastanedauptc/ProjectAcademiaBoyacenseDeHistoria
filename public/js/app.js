@@ -40761,6 +40761,9 @@ exports.push([module.i, "\n.top {\r\n    padding-top:50px;\r\n    height:92px;\r
 //
 //
 //
+//
+//
+//
 
 /***/ }),
 /* 84 */
@@ -40852,7 +40855,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "col-8 bg-white " }, [
       _c("h5", { staticClass: "text-justify" }, [
         _vm._v(
-          "Sistema bibliotecario realizado para la Academia Boyacense de Historia como trabajo final de la materia gerencia de proyectos en Ingeniería de Sistemas y Computación de la Universidad Pedagógica y Tecnológica de Colombia Seccional Sogamoso, un proyecto desarrollado por: "
+          "Sistema bibliotecario realizado para la Academia Boyacense de Historia como trabajo final de la materia GERENCIA INFORMÁTICA de Ingeniería de Sistemas y Computación de la Universidad Pedagógica y Tecnológica de Colombia Seccional Sogamoso, un proyecto desarrollado por: "
         )
       ]),
       _vm._v(" "),
@@ -40933,6 +40936,22 @@ var staticRenderFns = [
             ),
             _c("span", { staticClass: "badge badge-primary badge-pill" }, [
               _vm._v("DESARROLLADOR")
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            staticClass:
+              "list-group-item d-flex justify-content-between align-items-center"
+          },
+          [
+            _vm._v(
+              "Edmundo Arturo Junco Orduz\r\n                                            "
+            ),
+            _c("span", { staticClass: "badge badge-primary badge-pill" }, [
+              _vm._v("DOCENTE DE ASIGNATURA")
             ])
           ]
         )
