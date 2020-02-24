@@ -1413,6 +1413,7 @@ Vue.component('user', __webpack_require__(61));
 Vue.component('dashboard', __webpack_require__(66));
 Vue.component('registro', __webpack_require__(69));
 Vue.component('ayuda', __webpack_require__(75));
+Vue.component('acercade', __webpack_require__(80));
 var app = new Vue({
   el: '#app',
   data: {
@@ -35762,7 +35763,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             var _this5 = this;
 
             swal({
-                title: 'Esta seguro de activar esta Categoría?',
+                title: 'Esta seguro de activar este Ejemplar?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -40589,6 +40590,402 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-e5ca7ada", module.exports)
+  }
+}
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(81)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(83)
+/* template */
+var __vue_template__ = __webpack_require__(84)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\Acercade.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7aee9cb6", Component.options)
+  } else {
+    hotAPI.reload("data-v-7aee9cb6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(82);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("1987af11", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7aee9cb6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Acercade.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7aee9cb6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Acercade.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.top {\r\n    padding-top:50px;\r\n    height:92px;\r\n    overflow:hidden;\n}\n.top .addthis {\r\n    float: left;\r\n    width: 995px;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports) {
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("main", { staticClass: "main" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "container-fluid" }, [
+      _c("div", { staticClass: "card" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _c("div", { staticClass: "card", staticStyle: { width: "100%" } }, [
+          _c("div", { staticClass: "card-body" }, [
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "container-fluid" }, [
+              _c("div", { staticClass: "row text-black text-center border" }, [
+                _c("div", { staticClass: "col-4 bg-white " }, [
+                  _c("img", {
+                    staticStyle: { width: "100%", height: "100%" },
+                    attrs: { src: "img/sistemas.png" }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(2)
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row text-black text-center border" }, [
+                _c("div", { staticClass: "col-3 bg-white " }, [
+                  _c("img", {
+                    staticStyle: { width: "100%", height: "100%" },
+                    attrs: { src: "img/laravel2.jpg" }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(3)
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row text-black text-center border" }, [
+                _c("div", { staticClass: "col-3 bg-white " }, [
+                  _c("img", {
+                    staticStyle: { width: "100%", height: "100%" },
+                    attrs: { src: "img/vue2.jpg" }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(4)
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ol", { staticClass: "breadcrumb" }, [
+      _c("li", { staticClass: "breadcrumb-item" }, [_vm._v("Home")]),
+      _vm._v(" "),
+      _c("li", { staticClass: "breadcrumb-item" }, [
+        _c("a", { attrs: { href: "#" } }, [_vm._v("Acerca de")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("i", { staticClass: "fa fa-align-justify" }),
+      _vm._v(
+        "PROYECTO FINAL -->GERENCIA DE PROYECTOS\r\n                        "
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-8 bg-white " }, [
+      _c("h3", [_vm._v("INGENIERÍA DE SISTEMAS Y COMPUTACIÓN - SOGAMOSO")]),
+      _c("br"),
+      _vm._v(" "),
+      _c("h5", { staticClass: "text-justify" }, [
+        _vm._v(
+          "Sistema bibliotecario realizado para la Academia Boyacense de Historia como trabajo final de la materia gerencia de proyectos, un proyecto desarrollado de manera profesional desde la planeación hasta la entrega por: "
+        )
+      ]),
+      _vm._v(" "),
+      _c("ul", { staticClass: "list-group list-group-flush" }, [
+        _c(
+          "li",
+          {
+            staticClass:
+              "list-group-item d-flex justify-content-between align-items-center"
+          },
+          [
+            _vm._v(
+              "Hans Arevalo Barrera\r\n                                            "
+            ),
+            _c("span", { staticClass: "badge badge-primary badge-pill" }, [
+              _vm._v("DIRECTOR")
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            staticClass:
+              "list-group-item d-flex justify-content-between align-items-center"
+          },
+          [
+            _vm._v(
+              "Karen Juliana Cano Vega\r\n\r\n                                            "
+            ),
+            _c("span", { staticClass: "badge badge-primary badge-pill" }, [
+              _vm._v("ANALISTA DE REQUISITOS")
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            staticClass:
+              "list-group-item d-flex justify-content-between align-items-center"
+          },
+          [
+            _vm._v(
+              "Miler Yesid Menjure Barrera\r\n\r\n                                            "
+            ),
+            _c("span", { staticClass: "badge badge-primary badge-pill" }, [
+              _vm._v("TESTER")
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            staticClass:
+              "list-group-item d-flex justify-content-between align-items-center"
+          },
+          [
+            _vm._v(
+              "Jimmy Alejandro plazas López\r\n                                            "
+            ),
+            _c("span", { staticClass: "badge badge-primary badge-pill" }, [
+              _vm._v("SEGUIMIENTO")
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            staticClass:
+              "list-group-item d-flex justify-content-between align-items-center"
+          },
+          [
+            _vm._v(
+              "Jairo Alejandro Castañeda Pedraza\r\n                                            "
+            ),
+            _c("span", { staticClass: "badge badge-primary badge-pill" }, [
+              _vm._v("DESARROLLADOR")
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-9 bg-white " }, [
+      _c("h2", [_vm._v("FRAMEWORK BACK-END")]),
+      _c("br"),
+      _vm._v(" "),
+      _c("h5", { staticClass: "text-justify" }, [
+        _vm._v(
+          "Laravel en su versión 5.6 es estable,  permita el uso de una sintaxis elegante y expresiva para crear código de forma sencilla y permitiendo multitud de funcionalidades.\r\n                                    Gran parte de Laravel está formado por dependencias, especialmente de Symfony, esto implica que el desarrollo de Laravel dependa también del desarrollo de sus dependencias."
+        )
+      ]),
+      _vm._v(" "),
+      _c("h5", { staticClass: "text-justify" }, [
+        _vm._v(
+          "Laravel propone en el desarrollo usar 'Routes with Closures', en lugar de un MVC tradicional con el objetivo de hacer el código más claro. Por estas razones se decidió trabajar con este robusto framework de php"
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-9 bg-white " }, [
+      _c("h2", [_vm._v("FRAMEWORK FONT-END")]),
+      _c("br"),
+      _vm._v(" "),
+      _c("h5", { staticClass: "text-justify" }, [
+        _vm._v(
+          "Para implementar de una manera moderna la vista se utilió Vuejs, el cual es un framework open source de JavaScript, el cual nos permite construir interfaces de usuarios de una forma muy sencilla.Una de las características más importantes de Vue es el trabajo con componentes. Un componente Vue, en términos simples, es un elemento el cual se encapsula código reutilizable. Dentro de un componente podremos encontrar etiquetas HTML, estilos de CSS y código JavaScript"
+        )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7aee9cb6", module.exports)
   }
 }
 

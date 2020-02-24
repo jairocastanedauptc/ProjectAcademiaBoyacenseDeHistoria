@@ -37,7 +37,7 @@
         </template>
 
         <template v-if="menu==10">
-            <h1>Contenido del menú 10</h1>
+            <acercade></acercade>
         </template>
 
         <template v-if="menu==11">

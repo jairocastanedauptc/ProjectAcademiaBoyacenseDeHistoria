@@ -24,6 +24,7 @@ Vue.component('user', require('./components/User.vue'));
 Vue.component('dashboard', require('./components/Dashboard.vue'));
 Vue.component('registro', require('./components/Registro.vue'));
 Vue.component('ayuda', require('./components/Ayuda.vue'));
+Vue.component('acercade', require('./components/Acercade.vue'));
 const app = new Vue({
     el: '#app',
     data :{

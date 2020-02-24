@@ -563,7 +563,7 @@
             },
             activarEjemplar(id){
                swal({
-                title: 'Esta seguro de activar esta Categoría?',
+                title: 'Esta seguro de activar este Ejemplar?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
