@@ -31,12 +31,9 @@
                     </div>
                 </div>
                 <br>
-                <button type="button" @click="cargarPdf()" class="btn btn-info">
-                            <i class="icon-doc"></i>&nbsp;Reporte
-                        </button>
                 <div class="form-row">
                     <button type="button" @click="cargarPdf()" class="btn btn-dark col-sm">Descargar Manual de usuario</button>&nbsp;&nbsp;
-                    <button type="reset" class="btn btn-dark col-sm">Descargar Manual de programador</button>
+                    <button type="reset" @click="cargarPdf2()" class="btn btn-dark col-sm">Descargar Manual de programador</button>
                 </div>
             </div>
         </div>
@@ -47,11 +44,18 @@
 </template>
 <script>
 export default {
-        data(){},
+        data(){
+            return{
+                
+            }
+        },
 methods: {
     cargarPdf(){
                 window.open('http://localhost:8000/file/manualdeusuario','_blank');
-            }
+            },
+     cargarPdf2(){
+                window.open('http://localhost:8000/file/manualdeprogramador','_blank');
+            }        
 },
 mounted() {}
         

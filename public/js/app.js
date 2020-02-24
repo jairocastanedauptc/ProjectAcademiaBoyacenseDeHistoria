@@ -35610,7 +35610,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             }).then(function (response) {
                 me.cerrarModal();
                 me.listarEjemplar(1, '', 'titulo');
-                this.fecha_publicacion = '';
+                //this.fecha_publicacion=''
             }).catch(function (error) {
                 if (error.response.status == 422) {
                     _this.errors = error.response.data.errors;
@@ -35634,6 +35634,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             if (this.idcoleccion == 0) this.errorMostrarMsjEjemplar.push("Debe eleccionar una colección.");
             if (!this.descripcion) this.errorMostrarMsjEjemplar.push("Debe ingresar una descripción.");
             if (!this.elaborado) this.errorMostrarMsjEjemplar.push("Debe ingresar si el ejemplar fue elaborado o no.");
+            if (!this.fecha_publicacion) this.errorMostrarMsjEjemplar.push("La fecha de publicación no puede ser nula");
             //if (!this.editorial) this.errorMostrarMsjEjemplar.push("Debe ingresar la editorial.");
             if (!this.titulo) this.errorMostrarMsjEjemplar.push("El nombre del ejemplar no puede estar vacío.");
             if (!this.cantidad) this.errorMostrarMsjEjemplar.push("La cantidad no puede ser nula.");
@@ -35667,7 +35668,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             if (!this.elaborado) this.errorMostrarMsjEjemplar.push("Debe ingresar si el ejemplar fue elaborado o no.");
             //if (!this.editorial) this.errorMostrarMsjEjemplar.push("Debe ingresar la editorial.");
             if (!this.cantidad) this.errorMostrarMsjEjemplar.push("La cantidad no puede ser nula.");
-            //if (!this.fecha_publicacion) this.errorMostrarMsjEjemplar.push("La fecha de publicación no puede ser nula");
+            if (!this.fecha_publicacion) this.errorMostrarMsjEjemplar.push("La fecha de publicación no puede ser nula");
             if (!this.autor) this.errorMostrarMsjEjemplar.push("El autor no puede ser nulo");
             if (!this.imagen) this.errorMostrarMsjEjemplar.push("Debe seleccionar una imagen");
 
@@ -40483,19 +40484,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-        data: function data() {},
+    data: function data() {
+        return {};
+    },
 
-        methods: {
-                cargarPdf: function cargarPdf() {
-                        window.open('http://localhost:8000/file/manualdeusuario', '_blank');
-                }
+    methods: {
+        cargarPdf: function cargarPdf() {
+            window.open('http://localhost:8000/file/manualdeusuario', '_blank');
         },
-        mounted: function mounted() {}
+        cargarPdf2: function cargarPdf2() {
+            window.open('http://localhost:8000/file/manualdeprogramador', '_blank');
+        }
+    },
+    mounted: function mounted() {}
 });
 
 /***/ }),
@@ -40546,23 +40549,6 @@ var render = function() {
               _vm._v(" "),
               _c("br"),
               _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-info",
-                  attrs: { type: "button" },
-                  on: {
-                    click: function($event) {
-                      _vm.cargarPdf()
-                    }
-                  }
-                },
-                [
-                  _c("i", { staticClass: "icon-doc" }),
-                  _vm._v(" Reporte\r\n                        ")
-                ]
-              ),
-              _vm._v(" "),
               _c("div", { staticClass: "form-row" }, [
                 _c(
                   "button",
@@ -40582,7 +40568,12 @@ var render = function() {
                   "button",
                   {
                     staticClass: "btn btn-dark col-sm",
-                    attrs: { type: "reset" }
+                    attrs: { type: "reset" },
+                    on: {
+                      click: function($event) {
+                        _vm.cargarPdf2()
+                      }
+                    }
                   },
                   [_vm._v("Descargar Manual de programador")]
                 )

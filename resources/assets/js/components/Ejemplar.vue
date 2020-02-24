@@ -404,7 +404,7 @@
                 }).then(function(response){
                     me.cerrarModal();
                     me.listarEjemplar(1,'','titulo');
-                    this.fecha_publicacion=''
+                    //this.fecha_publicacion=''
                 })
                 .catch(error =>{
                     if(error.response.status == 422){
@@ -429,6 +429,7 @@
                 if (this.idcoleccion==0) this.errorMostrarMsjEjemplar.push("Debe eleccionar una colección.");
                 if (!this.descripcion) this.errorMostrarMsjEjemplar.push("Debe ingresar una descripción.");
                 if (!this.elaborado) this.errorMostrarMsjEjemplar.push("Debe ingresar si el ejemplar fue elaborado o no.");
+                if (!this.fecha_publicacion) this.errorMostrarMsjEjemplar.push("La fecha de publicación no puede ser nula");
                 //if (!this.editorial) this.errorMostrarMsjEjemplar.push("Debe ingresar la editorial.");
                 if (!this.titulo) this.errorMostrarMsjEjemplar.push("El nombre del ejemplar no puede estar vacío.");
                 if (!this.cantidad) this.errorMostrarMsjEjemplar.push("La cantidad no puede ser nula.");
@@ -461,7 +462,7 @@
                 if (!this.elaborado) this.errorMostrarMsjEjemplar.push("Debe ingresar si el ejemplar fue elaborado o no.");
                 //if (!this.editorial) this.errorMostrarMsjEjemplar.push("Debe ingresar la editorial.");
                 if (!this.cantidad) this.errorMostrarMsjEjemplar.push("La cantidad no puede ser nula.");
-                //if (!this.fecha_publicacion) this.errorMostrarMsjEjemplar.push("La fecha de publicación no puede ser nula");
+                if (!this.fecha_publicacion) this.errorMostrarMsjEjemplar.push("La fecha de publicación no puede ser nula");
                 if (!this.autor) this.errorMostrarMsjEjemplar.push("El autor no puede ser nulo");
                 if (!this.imagen) this.errorMostrarMsjEjemplar.push("Debe seleccionar una imagen");  
                 

@@ -101,6 +101,8 @@ Route::group(['middleware'=>['auth']],function(){
         Route::get('/registro/listarPdf','RegistroController@listarPdf')->name('registros_pdf');
     
         Route::get('file/manualdeusuario','FileController@manualdeusuario');
+        Route::get('file/manualdeprogramador','FileController@manualdeprogramador');
+        
     });
     //Route::get('/home', 'HomeController@index')->name('home');
 });
