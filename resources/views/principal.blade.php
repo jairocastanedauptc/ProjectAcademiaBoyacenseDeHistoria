@@ -8,7 +8,7 @@
     <meta name="description" content="Academia Boyacense de Historia">
     <meta name="author" content="uptc">
     <meta name="keyword" content="Academia Boyacense de Historia">
-    <link rel="shortcut icon" href="img/logo3.png">
+    <link rel="shortcut icon" href="img/academialogo2.png">
     <title>Academia Boyacense de Historia</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Icons -->
