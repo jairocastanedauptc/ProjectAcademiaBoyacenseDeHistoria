@@ -40761,7 +40761,6 @@ exports.push([module.i, "\n.top {\r\n    padding-top:50px;\r\n    height:92px;\r
 //
 //
 //
-//
 
 /***/ }),
 /* 84 */
@@ -40851,12 +40850,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-8 bg-white " }, [
-      _c("h3", [_vm._v("INGENIERÍA DE SISTEMAS Y COMPUTACIÓN - SOGAMOSO")]),
-      _c("br"),
-      _vm._v(" "),
       _c("h5", { staticClass: "text-justify" }, [
         _vm._v(
-          "Sistema bibliotecario realizado para la Academia Boyacense de Historia como trabajo final de la materia gerencia de proyectos, un proyecto desarrollado de manera profesional desde la planeación hasta la entrega por: "
+          "Sistema bibliotecario realizado para la Academia Boyacense de Historia como trabajo final de la materia gerencia de proyectos en Ingeniería de Sistemas y Computación de la Universidad Pedagógica y Tecnológica de Colombia Seccional Sogamoso, un proyecto desarrollado por: "
         )
       ]),
       _vm._v(" "),
