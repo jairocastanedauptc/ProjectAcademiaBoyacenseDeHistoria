@@ -96,21 +96,21 @@
                         <div class="modal-body">
                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input"><strong>Nombre(s)</strong>(Solo letras)</label>
+                                    <label class="col-md-3 form-control-label" for="text-input"><strong>Nombre(s)</strong>(Solo letras mayusculas sin acentos)</label>
                                     <div class="col-md-9">
                                         <input type="text" v-model="nombres" class="form-control" placeholder="Nombre de la persona">                                     
                                     </div>
                                 </div>
                                 
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input"><strong>Apellido(s)</strong>(Solo letras)</label>
+                                    <label class="col-md-3 form-control-label" for="text-input"><strong>Apellido(s)</strong>(Solo letras mayusculas sin acentos)</label>
                                     <div class="col-md-9">
                                         <input type="text" v-model="apellidos" class="form-control" placeholder="Apellidos">                                     
                                     </div>
                                 </div>
                                 
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="email-input"><strong>Celular</strong>(10 digitos)</label>
+                                    <label class="col-md-3 form-control-label" for="email-input">Celular</label>
                                     <div class="col-md-9">
                                         <input type="number"  v-model="celular" class="form-control" pattern="[1-9]{1}[0-9]{9}" placeholder="Celular">
                                     </div>
@@ -142,7 +142,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="email-input"><strong>Password </strong>(minimo 8 caracteres)</label>
+                                    <label class="col-md-3 form-control-label" for="email-input">Password </label>
                                     <div class="col-md-9">
                                         <input type="password" v-model="password" class="form-control" placeholder="Password de acceso">
                                     </div>
@@ -334,7 +334,7 @@
                         //this.errors= error.response.data.errors;
                         //this.errorAux.push("Asegurese de que los campos estén en el formato adecuado");
                         //this.errorMostrarMsjPersona.push("El nombre debe ser letras en mayuscula,sin tildes ni caracteres especiales");
-                        
+                        console.log(error.response);
                     }
                     if(error.response.status ==500){
                         console.log(error.response);

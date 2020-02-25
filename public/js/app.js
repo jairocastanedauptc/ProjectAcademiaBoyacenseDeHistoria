@@ -33230,10 +33230,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             descripcion: "",
             arrayCategoria: [],
             modal: 0,
+            alertError: "",
             tituloModal: "",
             tipoAccion: 0,
             errorCategoria: 0,
-            alertError: "",
             errorMostrarMsjCategoria: [],
             errors: [],
             categoria_id: 0,
@@ -33288,7 +33288,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 me.arrayCategoria = respuesta.categorias.data;
                 me.pagination = respuesta.pagination;
             }).catch(function (error) {
-                console.log(error);
+                console.log(error.response);
             });
         },
         cambiarPagina: function cambiarPagina(page, buscar, criterio) {
@@ -33304,12 +33304,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             //this.nombre= this.nombre.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
             //texto.normalize('NFD').replace(/[\u0300-\u036f]/g,"");
             //this.nombre = this.nombre.toUpperCase();
+
             if (this.validarCategoria()) {
                 return;
             }
             var me = this;
             axios.post('/categoria/registrar', {
-
                 'nombre': this.nombre,
                 'descripcion': this.descripcion
             }).then(function (response) {
@@ -33317,10 +33317,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 me.listarCategoria(1, '', 'nombre');
             }).catch(function (error) {
                 if (error.response.status == 422) {
+
                     _this.errors = error.response.data.errors;
-                    _this.errorMostrarMsjCategoria.push("El nombre debe ser letras en mayuscula,sin tildes ni caracteres especiales");
+                    _this.errorMostrarMsjCategoria.push("El nombre debe ser en mayuscula,sin tildes ni caracteres especiales");
                 }
             });
+            //.catch(function(error){
+            //  console.log(error);
+            //});
         },
         actualizarCategoria: function actualizarCategoria() {
             var _this2 = this;
@@ -33344,12 +33348,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     _this2.errorMostrarMsjCategoria.push("El nombre debe ser letras en mayuscula,sin tildes ni caracteres especiales");
                 }
             });
+            /*}).catch(function (error) {
+                console.log(error);
+            });*/
         },
         desactivarCategoria: function desactivarCategoria(id) {
             var _this3 = this;
 
             swal({
-                title: 'Está seguro de desactivar esta categoría?',
+                title: 'Esta seguro de desactivar esta categoria?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -33381,7 +33388,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this4 = this;
 
             swal({
-                title: 'Esta seguro de activar esta Categoría?',
+                title: 'Esta seguro de activar esta categoria?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -33412,10 +33419,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         validarCategoriaActualizar: function validarCategoriaActualizar() {
             this.errorCategoria = 0;
             this.errorMostrarMsjCategoria = [];
-
+            //errorMostrarMsjCategoria
             if (!this.nombre) this.errorMostrarMsjCategoria.push("El nombre no puede estar vacío");
             if (!this.descripcion) this.errorMostrarMsjCategoria.push("La descripción no puede estar vacía");
-            //alert("no validó"); 
             if (this.errorMostrarMsjCategoria.length) this.errorCategoria = 1;
             return this.errorCategoria;
         },
@@ -33424,10 +33430,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.errorCategoria = 0;
             this.errorMostrarMsjCategoria = [];
+
             this.arrayCategoria.forEach(function (element) {
                 if (element.nombre == _this5.nombre) {
                     //this.errorCategoria=0;
-                    _this5.errorMostrarMsjCategoria.push("Esta categoria ya existe");
+                    _this5.errorMostrarMsjCategoria.push("Esta Categoria ya existe");
                     if (_this5.errorMostrarMsjCategoria.length) _this5.errorCategoria = 1;
                     alert(element.nombre);
                     return _this5.errorCategoria;
@@ -33469,7 +33476,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     this.nombre = data['nombre'];
                                     this.descripcion = data['descripcion'];
                                     this.tituloModal = "Actualizar Categoría";
-                                    this.alertError = "El Categoría se actualizará cuando el formato de todos los campos sea el correcto";
+                                    this.alertError = "La Categoría se actualizará cuando el formato de todos los campos sea el correcto";
                                     this.tipoAccion = 2;
                                 }
                         }
@@ -33497,7 +33504,7 @@ var render = function() {
       _c("div", { staticClass: "card" }, [
         _c("div", { staticClass: "card-header" }, [
           _c("i", { staticClass: "fa fa-align-justify" }),
-          _vm._v(" Categorias\n                "),
+          _vm._v(" categoriaes\n                "),
           _c(
             "button",
             {
@@ -33842,14 +33849,7 @@ var render = function() {
                   },
                   [
                     _c("div", { staticClass: "form-group row" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "col-md-3 form-control-label",
-                          attrs: { for: "text-input" }
-                        },
-                        [_vm._v("Nombre")]
-                      ),
+                      _vm._m(2),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
                         _c("input", {
@@ -34023,7 +34023,7 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("li", { staticClass: "breadcrumb-item active" }, [
-        _vm._v("Categorias")
+        _vm._v("categoriaes")
       ])
     ])
   },
@@ -34042,6 +34042,19 @@ var staticRenderFns = [
         _c("th", [_vm._v("Estado")])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "col-md-3 form-control-label",
+        attrs: { for: "text-input" }
+      },
+      [_c("strong", [_vm._v("Nombre")]), _vm._v("(Solo letras en mayuscula)")]
+    )
   }
 ]
 render._withStripped = true
@@ -34918,14 +34931,7 @@ var render = function() {
                   },
                   [
                     _c("div", { staticClass: "form-group row" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "col-md-3 form-control-label",
-                          attrs: { for: "text-input" }
-                        },
-                        [_vm._v("Nombre")]
-                      ),
+                      _vm._m(2),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
                         _c("input", {
@@ -35118,6 +35124,19 @@ var staticRenderFns = [
         _c("th", [_vm._v("Estado")])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "col-md-3 form-control-label",
+        attrs: { for: "text-input" }
+      },
+      [_c("strong", [_vm._v("Nombre")]), _vm._v("(Solo letras en mayuscula)")]
+    )
   }
 ]
 render._withStripped = true
@@ -37896,7 +37915,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     //this.errors= error.response.data.errors;
                     //this.errorAux.push("Asegurese de que los campos estén en el formato adecuado");
                     //this.errorMostrarMsjPersona.push("El nombre debe ser letras en mayuscula,sin tildes ni caracteres especiales");
-
+                    console.log(error.response);
                 }
                 if (error.response.status == 500) {
                     console.log(error.response);
@@ -38500,7 +38519,14 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group row" }, [
-                      _vm._m(4),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-md-3 form-control-label",
+                          attrs: { for: "email-input" }
+                        },
+                        [_vm._v("Celular")]
+                      ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
                         _c("input", {
@@ -38664,7 +38690,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group row" }, [
-                      _vm._m(5),
+                      _vm._m(4),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
                         _c("input", {
@@ -38873,7 +38899,10 @@ var staticRenderFns = [
         staticClass: "col-md-3 form-control-label",
         attrs: { for: "text-input" }
       },
-      [_c("strong", [_vm._v("Nombre(s)")]), _vm._v("(Solo letras)")]
+      [
+        _c("strong", [_vm._v("Nombre(s)")]),
+        _vm._v("(Solo letras mayusculas sin acentos)")
+      ]
     )
   },
   function() {
@@ -38886,20 +38915,10 @@ var staticRenderFns = [
         staticClass: "col-md-3 form-control-label",
         attrs: { for: "text-input" }
       },
-      [_c("strong", [_vm._v("Apellido(s)")]), _vm._v("(Solo letras)")]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "label",
-      {
-        staticClass: "col-md-3 form-control-label",
-        attrs: { for: "email-input" }
-      },
-      [_c("strong", [_vm._v("Celular")]), _vm._v("(10 digitos)")]
+      [
+        _c("strong", [_vm._v("Apellido(s)")]),
+        _vm._v("(Solo letras mayusculas sin acentos)")
+      ]
     )
   },
   function() {

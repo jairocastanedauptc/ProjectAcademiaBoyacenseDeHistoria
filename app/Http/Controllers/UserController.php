@@ -63,12 +63,16 @@ class UserController extends Controller
             //]); 
 
             $fields =$request->validate([
-                'nombres'=>'regex:/^[A-Z\s]+$/u',
-                'apellidos'=> 'regex:/^[A-Z\s]+$/u',
+                //[a-zA-Z ]{2,254}
+                //'nombres'=>'regex:/^[A-Z\s]+$/u',
+                'nombres' => 'required|regex:/^[A-Z\s]+$/u',
+                'apellidos' => 'required|regex:/^[A-Z\s]+$/u',
+                //'nombres'=>'regex:/[A-Z][a-zA-Z][^#0123456789&<>\"~;$^%{}?]{1,20}$/',
+                //'apellidos'=> 'regex:/[A-Z][a-zA-Z][^#0123456789&<>\"~;$^%{}?]{1,20}$/',
                 'email'=>['required','email'],
                 'usuario'=>['required','string','unique:users,usuario'],
-                'password'=>['required','min:8','max:50'],
-                'celular'=>['required','digits:10','integer']
+                'password'=>['required','max:50'],
+                'celular'=>['required','regex:/[0-9]{10}/']
             ]
             /*[
                 'nombres.required'=>'Los nombres son obligatorios',

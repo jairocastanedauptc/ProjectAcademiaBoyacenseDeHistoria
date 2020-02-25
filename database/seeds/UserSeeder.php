@@ -25,24 +25,5 @@ class UserSeeder extends Seeder
         $user->password = bcrypt('admin');
         $user->idrol=1;
         $user->save();
-        //$user->roles()->attach($rol_admin);
-
-        /*DB::table('users')->truncate();
-        DB::table('personas')->truncate();
-        DB::table('roles')->insert(array('id'=>'1','nombre'=>'Administrador', 'descripcion'=>'Maneja el CRUD de categorías ,colecciones ,ejemplares y usuarios, además tiene acceso a la tabla de roles y reportes , puede generar informes y ver gráficos estadísticos'));
-        DB::table('roles')->insert(array('id'=>'2','nombre'=>'Secretario'   , 'descripcion'=>'Maneja el CRUD de categorías ,colecciones y ejemplares, a su vez puede ver la tabla de roles y ver gráficos estadísticos'));
-  
-        DB::table('personas')->insert([
-            'id'=>1,
-            'nombres'=>'Jairo Alejandro',
-            'apellidos' => 'Castañeda Pedraza',
-            'celular'=>3219186301,
-            'email'=>'jairo@gmail.com'
-
-        ]);
-        DB::table('users')->insert([
-            'usuario'=>'admin',
-            'password' => bcrypt('secret'),
-        ]);*/
     }
 }
