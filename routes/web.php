@@ -26,6 +26,9 @@ Route::group(['middleware'=>['auth']],function(){
     })->name('main');
 
     Route::group(['middleware'=>['Secretario']],function(){
+        Route::get('file/manualdeusuario','FileController@manualdeusuario');
+        Route::get('file/manualdeprogramador','FileController@manualdeprogramador');
+
         Route::get('/ejemplar','EjemplarController@index');
         Route::post('/ejemplar/registrar','EjemplarController@store');
         Route::put('/ejemplar/activar','EjemplarController@activar');

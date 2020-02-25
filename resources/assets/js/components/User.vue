@@ -96,14 +96,14 @@
                         <div class="modal-body">
                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Nombre(s)</label>
+                                    <label class="col-md-3 form-control-label" for="text-input"><strong>Nombre(s)</strong>(Solo letras)</label>
                                     <div class="col-md-9">
                                         <input type="text" v-model="nombres" class="form-control" placeholder="Nombre de la persona">                                     
                                     </div>
                                 </div>
                                 
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Apellido(s)</label>
+                                    <label class="col-md-3 form-control-label" for="text-input"><strong>Apellido(s)</strong>(Solo letras)</label>
                                     <div class="col-md-9">
                                         <input type="text" v-model="apellidos" class="form-control" placeholder="Apellidos">                                     
                                     </div>

@@ -111,6 +111,10 @@
                                         <input type="text" v-model="descripcion" class="form-control" placeholder="Descripción">
                                     </div>
                                 </div>
+                                <div class="text-center text-error">
+                                        
+                                        <div v-text="alertError"></div>
+                                    </div>
                                 <div v-show="errorCategoria" class="form-group row div-error">
                                     <div class="text-center text-error">
                                         <div v-for="error in errorMostrarMsjCategoria" :key="error" v-text="error"></div>
@@ -146,6 +150,7 @@
             tituloModal:"",
             tipoAccion:0,
             errorCategoria :0,
+            alertError:"",
             errorMostrarMsjCategoria:[],
             errors:[],
             categoria_id:0,
@@ -383,6 +388,7 @@
                                 this.nombre="";
                                 this.descripcion="";
                                 this.tituloModal="Registrar Categoría";
+                                this.alertError="La Categoría registrará cuando el formato de todos los campos sea el correcto";
                                 this.tipoAccion=1;
                                 break;
                             }
@@ -393,6 +399,7 @@
                                 this.nombre=data['nombre'];
                                 this.descripcion= data['descripcion'];
                                 this.tituloModal="Actualizar Categoría";
+                                this.alertError="El Categoría se actualizará cuando el formato de todos los campos sea el correcto";
                                 this.tipoAccion=2;
                             }    
                         }

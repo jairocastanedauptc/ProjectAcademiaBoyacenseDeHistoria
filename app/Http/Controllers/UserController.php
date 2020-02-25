@@ -63,8 +63,8 @@ class UserController extends Controller
             //]); 
 
             $fields =$request->validate([
-                'nombres'=>'regex:/[A-Za-z]/',
-                'apellidos'=> 'regex:/[A-Za-z]/',
+                'nombres'=>'regex:/^[A-Z\s]+$/u',
+                'apellidos'=> 'regex:/^[A-Z\s]+$/u',
                 'email'=>['required','email'],
                 'usuario'=>['required','string','unique:users,usuario'],
                 'password'=>['required','min:8','max:50'],

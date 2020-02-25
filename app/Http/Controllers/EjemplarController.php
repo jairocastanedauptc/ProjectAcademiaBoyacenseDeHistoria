@@ -66,6 +66,7 @@ class EjemplarController extends Controller
         'editorial'=>['string'],
         'autor'=>['string','regex:/[A-Za-z ]/'],
         'cantidad'=>['required','min:1','max:50','integer'],
+        //
         'titulo' => ['required','regex:/^[A-Z\s]/',]
         ]);
         $ejemplar = new Ejemplar();

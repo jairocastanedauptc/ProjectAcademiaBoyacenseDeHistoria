@@ -131,7 +131,7 @@
                         <div class="modal-body">
                             <form action="https://vuejs.org/" id="app" method="post" enctype="multipart/form-data" novalidate="true"  class="form-horizontal">
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">titulo</label>
+                                    <label class="col-md-3 form-control-label" for="text-input"><strong>Titulo</strong>(mayúsculas)</label>
                                     <div class="col-md-9">
                                         <input type="text"  class="form-control" v-model="titulo" placeholder="titulo del ejemplar">
                                     </div>

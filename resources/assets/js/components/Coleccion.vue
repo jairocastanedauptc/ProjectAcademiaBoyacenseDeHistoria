@@ -110,6 +110,10 @@
                                         <input type="text" v-model="descripcion" class="form-control" placeholder="Descripción">
                                     </div>
                                 </div>
+                                <div class="text-center text-error">
+                                        
+                                        <div v-text="alertError"></div>
+                                    </div>
                                 <div v-show="errorColeccion" class="form-group row div-error">
                                     <div class="text-center text-error">
                                         <div v-for="error in errorMostrarMsjColeccion" :key="error" v-text="error"></div>
@@ -143,6 +147,7 @@
             descripcion : "",
             arrayColeccion: [],
             modal:0,
+            alertError:"",
             tituloModal:"",
             tipoAccion:0,
             errorColeccion :0,
@@ -387,6 +392,7 @@
                                 this.nombre="";
                                 this.descripcion="";
                                 this.tituloModal="Registrar Colección";
+                                this.alertError="La Colección registrará cuando el formato de todos los campos sea el correcto";
                                 this.tipoAccion=1;
                                 break;
                             }
@@ -397,6 +403,7 @@
                                 this.nombre=data['nombre'];
                                 this.descripcion= data['descripcion'];
                                 this.tituloModal="Actualizar Colección";
+                                this.alertError="La Colección se actualizará cuando el formato de todos los campos sea el correcto";
                                 this.tipoAccion=2;
                             }    
                         }

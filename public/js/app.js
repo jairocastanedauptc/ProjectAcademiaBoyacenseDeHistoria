@@ -33218,6 +33218,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -33229,6 +33233,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             tituloModal: "",
             tipoAccion: 0,
             errorCategoria: 0,
+            alertError: "",
             errorMostrarMsjCategoria: [],
             errors: [],
             categoria_id: 0,
@@ -33453,6 +33458,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     this.nombre = "";
                                     this.descripcion = "";
                                     this.tituloModal = "Registrar Categoría";
+                                    this.alertError = "La Categoría registrará cuando el formato de todos los campos sea el correcto";
                                     this.tipoAccion = 1;
                                     break;
                                 }
@@ -33463,6 +33469,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     this.nombre = data['nombre'];
                                     this.descripcion = data['descripcion'];
                                     this.tituloModal = "Actualizar Categoría";
+                                    this.alertError = "El Categoría se actualizará cuando el formato de todos los campos sea el correcto";
                                     this.tipoAccion = 2;
                                 }
                         }
@@ -33907,6 +33914,12 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
+                    _c("div", { staticClass: "text-center text-error" }, [
+                      _c("div", {
+                        domProps: { textContent: _vm._s(_vm.alertError) }
+                      })
+                    ]),
+                    _vm._v(" "),
                     _c(
                       "div",
                       {
@@ -34274,6 +34287,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -34282,6 +34299,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             descripcion: "",
             arrayColeccion: [],
             modal: 0,
+            alertError: "",
             tituloModal: "",
             tipoAccion: 0,
             errorColeccion: 0,
@@ -34516,6 +34534,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     this.nombre = "";
                                     this.descripcion = "";
                                     this.tituloModal = "Registrar Colección";
+                                    this.alertError = "La Colección registrará cuando el formato de todos los campos sea el correcto";
                                     this.tipoAccion = 1;
                                     break;
                                 }
@@ -34526,6 +34545,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     this.nombre = data['nombre'];
                                     this.descripcion = data['descripcion'];
                                     this.tituloModal = "Actualizar Colección";
+                                    this.alertError = "La Colección se actualizará cuando el formato de todos los campos sea el correcto";
                                     this.tipoAccion = 2;
                                 }
                         }
@@ -34968,6 +34988,12 @@ var render = function() {
                           }
                         })
                       ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text-center text-error" }, [
+                      _c("div", {
+                        domProps: { textContent: _vm._s(_vm.alertError) }
+                      })
                     ]),
                     _vm._v(" "),
                     _c(
@@ -36315,14 +36341,7 @@ var render = function() {
                   },
                   [
                     _c("div", { staticClass: "form-group row" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "col-md-3 form-control-label",
-                          attrs: { for: "text-input" }
-                        },
-                        [_vm._v("titulo")]
-                      ),
+                      _vm._m(2),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
                         _c("input", {
@@ -36597,7 +36616,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group row" }, [
-                      _vm._m(2),
+                      _vm._m(3),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
                         _c("input", {
@@ -36897,6 +36916,19 @@ var staticRenderFns = [
         _c("th", [_vm._v("Condición")])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "col-md-3 form-control-label",
+        attrs: { for: "text-input" }
+      },
+      [_c("strong", [_vm._v("Titulo")]), _vm._v("(mayúsculas)")]
+    )
   },
   function() {
     var _vm = this
@@ -38409,14 +38441,7 @@ var render = function() {
                   },
                   [
                     _c("div", { staticClass: "form-group row" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "col-md-3 form-control-label",
-                          attrs: { for: "text-input" }
-                        },
-                        [_vm._v("Nombre(s)")]
-                      ),
+                      _vm._m(2),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
                         _c("input", {
@@ -38447,14 +38472,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group row" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "col-md-3 form-control-label",
-                          attrs: { for: "text-input" }
-                        },
-                        [_vm._v("Apellido(s)")]
-                      ),
+                      _vm._m(3),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
                         _c("input", {
@@ -38482,7 +38500,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group row" }, [
-                      _vm._m(2),
+                      _vm._m(4),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
                         _c("input", {
@@ -38646,7 +38664,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group row" }, [
-                      _vm._m(3),
+                      _vm._m(5),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
                         _c("input", {
@@ -38844,6 +38862,32 @@ var staticRenderFns = [
         _c("th", [_vm._v("Rol")])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "col-md-3 form-control-label",
+        attrs: { for: "text-input" }
+      },
+      [_c("strong", [_vm._v("Nombre(s)")]), _vm._v("(Solo letras)")]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "col-md-3 form-control-label",
+        attrs: { for: "text-input" }
+      },
+      [_c("strong", [_vm._v("Apellido(s)")]), _vm._v("(Solo letras)")]
+    )
   },
   function() {
     var _vm = this
